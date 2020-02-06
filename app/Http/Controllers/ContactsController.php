@@ -17,4 +17,15 @@ class ContactsController extends Controller
 		return view( 'contact.list', [ 'contacts' => $contacts ] );
 
 	}
+
+	public function createContact()
+	{
+		$contact = new Contact();
+		$name = \request( 'name' );
+		$contact->name = $name;
+		$contact->save();
+
+		return back();
+
+	}
 }

@@ -30,6 +30,7 @@ Route::view( 'user', 'userInfo' );
 //Contacts
 Route::view( 'viewContact', 'contact.view' );
 Route::get( 'listContact', 'ContactsController@listContacts' );
+Route::post('listContact','ContactsController@createContact');
 Route::view( 'createContact', 'contact.create' );
 
 //Services
