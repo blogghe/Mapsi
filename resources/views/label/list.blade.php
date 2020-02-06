@@ -1,7 +1,11 @@
-<h1>list label</h1>
+@extends('layout')
 
-<ul>
-    @foreach($labels as $label)
-        <li>{{$label}}</li>
-    @endforeach
-</ul>
+@section('content')
+    <h1>list label</h1>
+
+    <ul>
+        @foreach($labels as $label)
+            <li>{{$label}}</li>
+        @endforeach
+    </ul>
+@endsection
