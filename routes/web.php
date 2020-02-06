@@ -29,7 +29,7 @@ Route::view( 'user', 'userInfo' );
 
 //Contacts
 Route::view( 'viewContact', 'contact.view' );
-Route::view( 'listContact', 'contact.list' );
+Route::get( 'listContact', 'ContactsController@listContacts' );
 Route::view( 'createContact', 'contact.create' );
 
 //Services
