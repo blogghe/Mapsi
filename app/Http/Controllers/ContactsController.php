@@ -20,6 +20,9 @@ class ContactsController extends Controller
 
 	public function createContact()
 	{
+		$data = \request()->validate( [
+			'name' => 'required|min:3',
+		] );
 		$contact = new Contact();
 		$name = \request( 'name' );
 		$contact->name = $name;
