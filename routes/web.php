@@ -14,63 +14,35 @@
 use Illuminate\Support\Facades\Route;
 
 //general pages
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get( '/', function () {
+	return view( 'welcome' );
+} );
 
-Route::get('contact', function (){
-	return 'Contacteer ons';
-});
-
-Route::get('about', function (){
-	return 'Over ons';
-});
+Route::get( 'contact', function () {
+	return view( 'contact' );
+} );
+//differently but cleaner written
+Route::view( 'about', 'about' );
 
 //User Pages
-Route::get('user', function (){
-	return 'gebruikers_info';
-});
+Route::view( 'user', 'userInfo' );
 
 //Contacts
-Route::get('viewContact', function (){
-	return 'Contact info';
-});
-Route::get('ListContact', function (){
-	return 'Lijst van contacts';
-});
-Route::get('CreateContact', function (){
-	return 'Maak ontact';
-});
+Route::view( 'viewContact', 'contact.view' );
+Route::view( 'ListContact', 'contact.list' );
+Route::view( 'CreateContact', 'contact.create' );
 
 //Services
-Route::get('viewService', function (){
-	return 'Service info';
-});
-Route::get('ListService', function (){
-	return 'Lijst van services';
-});
-Route::get('CreateService', function (){
-	return 'Maak service';
-});
+Route::view( 'viewService', 'service.view' );
+Route::view( 'ListService', 'service.list' );
+Route::view( 'CreateService', 'service.create' );
 
 //Labels
-Route::get('viewLabel', function (){
-	return 'Contact info';
-});
-Route::get('ListLabel', function (){
-	return 'Lijst van contacts';
-});
-Route::get('CreateLabel', function (){
-	return 'Maak contact';
-});
+Route::view( 'viewLabel', 'label.view' );
+Route::view( 'ListLabel', 'label.list' );
+Route::view( 'CreateLabel', 'label.create' );
 
 //Problems
-Route::get('viewProblem', function (){
-	return 'Probleem info';
-});
-Route::get('ListProblem', function (){
-	return 'Lijst van problemen';
-});
-Route::get('CreateProblem', function (){
-	return 'Maak probleem';
-});
+Route::view( 'viewProblem', 'problem.view' );
+Route::view( 'ListProblem', 'problem.list' );
+Route::view( 'CreateProblem', 'problem.create' );
