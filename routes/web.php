@@ -29,20 +29,20 @@ Route::view( 'user', 'userInfo' );
 
 //Contacts
 Route::view( 'viewContact', 'contact.view' );
-Route::view( 'ListContact', 'contact.list' );
-Route::view( 'CreateContact', 'contact.create' );
+Route::view( 'listContact', 'contact.list' );
+Route::view( 'createContact', 'contact.create' );
 
 //Services
 Route::view( 'viewService', 'service.view' );
-Route::view( 'ListService', 'service.list' );
-Route::view( 'CreateService', 'service.create' );
+Route::view( 'listService', 'service.list' );
+Route::view( 'createService', 'service.create' );
 
 //Labels
 Route::view( 'viewLabel', 'label.view' );
-Route::view( 'ListLabel', 'label.list' );
-Route::view( 'CreateLabel', 'label.create' );
+Route::view( 'listLabel', 'label.list', [ 'labels' => [ 'label1', 'label2', 'label3' ] ] );
+Route::view( 'createLabel', 'label.create' );
 
 //Problems
 Route::view( 'viewProblem', 'problem.view' );
-Route::view( 'ListProblem', 'problem.list' );
-Route::view( 'CreateProblem', 'problem.create' );
+Route::view( 'listProblem', 'problem.list' );
+Route::view( 'createProblem', 'problem.create' );
