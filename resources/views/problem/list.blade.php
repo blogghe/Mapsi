@@ -5,7 +5,7 @@
     <form action="listProblems" method="POST" class="pb-5">
         <div class="input-group">
             <label>Name:
-                <input type="text" name="name">
+                <input type="text" name="name" value="{{old('name')}}">
             </label>
         </div>
         <div class="input-group">
@@ -19,7 +19,7 @@
                 </select>
             </label>
         </div>
-        <div>{{$errors->first()}}</div>
+        <div>{{$errors->first('name')}}</div>
 
         <button type="submit">Add Problem</button>
         @csrf
@@ -30,7 +30,7 @@
         <ul>
             @foreach($problems as $problem)
                 <li>{{$problem->name}}</li>
-                <li>{{$problem}}</li>
+            <!--<li>{{$problem}}</li>-->
             @endforeach
         </ul>
     @else

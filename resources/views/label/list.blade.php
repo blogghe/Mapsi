@@ -18,7 +18,7 @@
         <ul>
             @foreach($labels as $label)
                 <li>{{$label->name}}</li>
-                <li>{{$label}}</li>
+            <!--<li>{{$label}}</li>-->
             @endforeach
         </ul>
     @else
