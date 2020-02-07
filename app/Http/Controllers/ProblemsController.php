@@ -17,17 +17,31 @@ class ProblemsController extends Controller
 
 	public function createProblem()
 	{
-		{
-			$data = \request()->validate( [
-				'name' => 'required|min:3',
-			] );
-			$problem = new Problem();
-			$name = \request( 'name' );
-			$problem->name = $name;
-			$problem->save();
 
-			return back();
+		$data = \request()->validate( [
+			'title' => 'required|min:3'
+		] );
+		//dd( \request( 'status' ) );
+		$problem = $this->FillInDefaultProblem();
+		//$description = \request( 'description' );
+		$status = \request('status');
+		$title= \request('title');
+		//$problem->description = $description;
+		$problem->title = $title;
 
-		}
+		$problem->status = $status;
+		$problem->save();
+
+		return back();
+
 	}
+	private function FillInDefaultProblem()
+	{
+		$problem = new Problem();
+		$problem->description="";
+		$problem->title="";
+		$problem->status=0;
+		return $problem;
+	}
+
 }

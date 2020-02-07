@@ -14,13 +14,21 @@
         <div class="col-12">
             <form action="listProblems" method="POST" class="pb-5">
                 <div class="form-group">
-                    <label>Name:
-                        <input type="text" name="name" value="{{old('name')}}" class="form-control">
+                    <label for="title">Title:
+                        <input type="text" name="title" value="{{old('title')}}" class="form-control">
                     </label>
+                    <div>{{$errors->first('title')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Status:
-                        <select class="form-control m-bot15" name="role_id">
+                    <label for="description">Description:
+                        <textarea class="form-control"  name="description">{{old('description')}}</textarea>
+                    </label>
+                    <div>{{$errors->first('description')}}</div>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status:
+                        <select class="form-control m-bot15" name="status">
+                            <option value="" disabled>Select a status</option>
                             <option value="0">Reported</option>
                             <option value="1">Ongoing</option>
                             <option value="2">Pending</option>
@@ -29,7 +37,6 @@
                         </select>
                     </label>
                 </div>
-                <div>{{$errors->first('name')}}</div>
                 <button type="submit" class="btn btn-primary">Add Problem</button>
                 @csrf
             </form>
@@ -41,7 +48,7 @@
                 List Problems
                 <ul>
                     @foreach($problems as $problem)
-                        <li>{{$problem->name}}</li>
+                        <li>{{$problem->title}}<span class="text-muted"> ({{$problem->status}})</span></li>
                     <!--<li>{{$problem}}</li>-->
                     @endforeach
                 </ul>

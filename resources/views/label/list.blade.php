@@ -14,7 +14,7 @@
         <div class="col-12">
             <form action="listLabels" method="POST">
                 <div class="form-group">
-                    <label>Name:
+                    <label for="name">Name:
                         <input type="text" name="name" class="form-control">
                     </label>
                 </div>

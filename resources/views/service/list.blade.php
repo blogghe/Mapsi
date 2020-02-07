@@ -14,13 +14,13 @@
         <div class="col-12">
             <form action="listServices" method="POST" class="pb-5">
                 <div class="form-group">
-                    <label>Name:
+                    <label for="name">Name:
                         <input type="text" name="name" value="{{old('name')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('name')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Email:
+                    <label for="email">Email:
                         <input type="text" name="email" value="{{old('email')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('email')}}</div>

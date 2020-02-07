@@ -42,37 +42,37 @@
                     <div>{{$errors->first('role_id')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Street:
+                    <label for="street">Street:
                         <input type="text" name="street" value="{{old('street')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('street')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Number:
+                    <label for="sNumber">Number:
                         <input type="text" name="sNumber" value="{{old('sNumber')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('sNumber')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Bus:
+                    <label for="bus">Bus:
                         <input type="text" name="bus" value="{{old('bus')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('bus')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>City:
+                    <label for="city">City:
                         <input type="text" name="city" value="{{old('city')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('city')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Zip:
+                    <label for="zip">Zip:
                         <input type="text" name="zip" value="{{old('zip')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('zip')}}</div>
                 </div>
                 <div class="form-group">
-                    <label>Phone:
+                    <label for="phone">Phone:
                         <input type="text" name="phone" value="{{old('phone')}}" class="form-control">
                     </label>
                     <div>{{$errors->first('phone')}}</div>
