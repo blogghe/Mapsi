@@ -29,21 +29,24 @@ Route::view( 'user', 'userInfo' );
 
 //Contacts
 Route::view( 'viewContact', 'contact.view' );
-Route::get( 'listContact', 'ContactsController@listContacts' );
-Route::post('listContact','ContactsController@createContact');
+Route::get( 'listContacts', 'ContactsController@listContacts' );
+Route::post( 'listContacts', 'ContactsController@createContact' );
 Route::view( 'createContact', 'contact.create' );
 
 //Services
 Route::view( 'viewService', 'service.view' );
-Route::view( 'listService', 'service.list' );
+Route::get( 'listServices', 'ServicesController@listServices' );
+Route::post( 'listServices', 'ServicesController@createService' );
 Route::view( 'createService', 'service.create' );
 
 //Labels
 Route::view( 'viewLabel', 'label.view' );
-Route::view( 'listLabel', 'label.list', [ 'labels' => [ 'label1', 'label2', 'label3' ] ] );
+Route::get( 'listLabels', 'LabelsController@listLabels' );
+Route::post( 'listLabels', 'LabelsController@createLabel' );
 Route::view( 'createLabel', 'label.create' );
 
 //Problems
 Route::view( 'viewProblem', 'problem.view' );
-Route::view( 'listProblem', 'problem.list' );
+Route::get( 'listProblems', 'ProblemsController@listProblems' );
+Route::post( 'listProblems', 'ProblemsController@createProblem' );
 Route::view( 'createProblem', 'problem.create' );

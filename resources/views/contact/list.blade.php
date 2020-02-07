@@ -13,11 +13,16 @@
         @csrf
     </form>
 
-    <ul>
-        @foreach($contacts as $contact)
-            <li>{{$contact->name}}</li>
-            <li>{{$contact}}</li>
+    @if( ! empty($contacts))
+        List contacts
+        <ul>
+            @foreach($contacts as $contact)
+                <li>{{$contact->name}}</li>
+                <li>{{$contact}}</li>
 
-        @endforeach
-    </ul>
+            @endforeach
+        </ul>
+    @else
+        No contacts created yet
+    @endif
 @endsection
