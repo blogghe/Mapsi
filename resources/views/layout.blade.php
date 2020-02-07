@@ -3,35 +3,17 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
-    <title>Mapsi Project</title>
+
+    <title>@yield('title', 'Mapsi')</title>
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
-<ul class="nav">
-    <li class="nav-item">
-        <a class="nav-link" href="/">Home</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="about">about</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="contact">contact us</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="listContacts">contacts</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="listLabels">Labels</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="listServices">Service</a>
-    </li>
-    <li class="nav-item">
-        <a class="nav-link" href="listProblems">Problems</a>
-    </li>
-</ul>
+
 <div class="container">
+    @include('nav', ['username' =>'barteld'])
+
     @yield('content')
 </div>
 
