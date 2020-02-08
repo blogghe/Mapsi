@@ -11,6 +11,7 @@ class ContactsController extends Controller
 	public function listContacts()
 	{
 		$contacts = Contact::all();
+
 		return view( 'contact.list', [ 'contacts' => $contacts ] );
 
 	}
@@ -18,18 +19,22 @@ class ContactsController extends Controller
 	public function createContact()
 	{
 		$data = \request()->validate( [
-			'name' => 'required|min:3',
-			'email' => 'required|email',
-			'sNumber' => 'nullable|integer',
-			'zip' => 'nullable|integer',
-			'phone' => 'nullable|integer',
+			'name'      => 'required|min:3',
+			'email'     => 'required|email',
+			'street'    => '',
+			'sNumber'   => 'nullable|integer',
+			'bus'       => '',
+			'city'      => '',
+			'gender'    => '',
+			'zip'       => 'nullable|integer',
+			'phone'     => 'nullable|integer',
 			'birthdate' => 'nullable|date',
 		] );
-		$contact =$this->FillInDefaultContact();
+		$contact = $this->FillInDefaultContact();
 		$name = \request( 'name' );
 		$contact->name = $name;
 		//$contact->street = \request( 'street' );
-		$contact->email =\request('email');
+		$contact->email = \request( 'email' );
 		$contact->save();
 
 		return back();
@@ -37,17 +42,17 @@ class ContactsController extends Controller
 
 	private function FillInDefaultContact()
 	{
-		$contact= new Contact();
-		$contact->name='';
-		$contact->email='';
-		$contact->street='';
-		$contact->sNumber=0;
-		$contact->bus='';
-		$contact->city='';
-		$contact->gender=0;
-		$contact->zip=0;
-		$contact->phone=0;
-		$contact->birthdate= date("Y/m/d");
+		$contact = new Contact();
+		$contact->name = '';
+		$contact->email = '';
+		$contact->street = '';
+		$contact->sNumber = 0;
+		$contact->bus = '';
+		$contact->city = '';
+		$contact->gender = 0;
+		$contact->zip = 0;
+		$contact->phone = 0;
+		$contact->birthdate = date( "Y/m/d" );
 
 		return $contact;
 	}

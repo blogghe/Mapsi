@@ -20,10 +20,16 @@ class LabelsController extends Controller
 		$data = \request()->validate( [
 			'name' => 'required|min:3',
 		] );
+
+		/*
+		 * Old simple way to store data
 		$label = new Label();
 		$name = \request( 'name' );
 		$label->name = $name;
-		$label->save();
+		$label->save();*/
+
+		//mass assigment
+		Label::create($data);
 
 		return back();
 
