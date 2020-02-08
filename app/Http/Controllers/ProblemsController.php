@@ -10,7 +10,8 @@ class ProblemsController extends Controller
 	public function listProblems()
 	{
 		$problems = Problem::all();
-		$reportedProblems = Problem::where( 'status', 0 )->get();
+		//eloquent, doesn't get recognized in phpstorm
+		$reportedProblems = Problem::ongoing()->get();
 		$ongoingProblems = Problem::where( 'status', 1 )->get();
 		$pendingProblems = Problem::where( 'status', 2 )->get();
 		$solvedProblems = Problem::where( 'status', 3 )->get();
@@ -35,32 +36,13 @@ class ProblemsController extends Controller
 	{
 
 		$data = \request()->validate( [
-			'title'  => 'required|min:3',
-			'status' => 'required',
+			'title'       => 'required|min:3',
+			'status'      => 'required',
+			'description' => 'required',
 		] );
-		//dd( \request( 'status' ) );
-		$problem = $this->FillInDefaultProblem();
-		//$description = \request( 'description' );
-		$status = \request( 'status' );
-		$title = \request( 'title' );
-		//$problem->description = $description;
-		$problem->title = $title;
-
-		$problem->status = $status;
-		$problem->save();
+		Problem::create( $data );
 
 		return back();
 
 	}
-
-	private function FillInDefaultProblem()
-	{
-		$problem = new Problem();
-		$problem->description = "";
-		$problem->title = "";
-		$problem->status = 0;
-
-		return $problem;
-	}
-
 }
