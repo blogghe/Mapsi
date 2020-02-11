@@ -13,13 +13,14 @@ class CreateProblemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('problems', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title');
-            $table->string('description');
-            $table->integer('status');
+        Schema::create( 'problems', function ( Blueprint $table ) {
+            $table->bigIncrements( 'id' );
+            $table->unsignedBigInteger( 'service_id' );
+            $table->string( 'title' );
+            $table->string( 'description' );
+            $table->integer( 'status' );
             $table->timestamps();
-        });
+        } );
     }
 
     /**
@@ -29,6 +30,6 @@ class CreateProblemsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('problems');
+        Schema::dropIfExists( 'problems' );
     }
 }

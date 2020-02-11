@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="description">Description:
-                        <textarea class="form-control"  name="description">{{old('description')}}</textarea>
+                        <textarea class="form-control" name="description">{{old('description')}}</textarea>
                     </label>
                     <div>{{$errors->first('description')}}</div>
                 </div>
@@ -37,6 +37,16 @@
                         </select>
                     </label>
                 </div>
+                <div class="form-group">
+                    <label for="service_id">Service:
+                        <select class="form-control m-bot15" name="service_id" id="service_id">
+                            @foreach($services as $service)
+                                <option value="{{$service->id}}">{{$service->name}}</option>
+                            @endforeach
+                            <option value="" disabled>Select a service</option>
+                        </select>
+                    </label>
+                </div>
                 <button type="submit" class="btn btn-primary">Add Problem</button>
                 @csrf
             </form>
@@ -48,7 +58,9 @@
                 Reported Problems
                 <ul>
                     @foreach($reportedProblems as $reportedProblem)
-                        <li>{{$reportedProblem->title}}<span class="text-muted"> ({{$reportedProblem->status}})</span></li>
+                        <li>{{$reportedProblem->title}}<span
+                                class="text-muted"> ({{$reportedProblem->service->name}})</span>
+                        </li>
                     <!--<li>{{$reportedProblem}}</li>-->
                     @endforeach
                 </ul>
@@ -59,7 +71,9 @@
                 Ongoing Problems
                 <ul>
                     @foreach($ongoingProblems as $ongoingProblem)
-                        <li>{{$ongoingProblem->title}}<span class="text-muted"> ({{$ongoingProblem->status}})</span></li>
+                        <li>{{$ongoingProblem->title}}<span
+                                class="text-muted"> ({{$ongoingProblem->service->name}})</span>
+                        </li>
                     <!--<li>{{$ongoingProblem}}</li>-->
                     @endforeach
                 </ul>
@@ -70,7 +84,9 @@
                 Pending Problems
                 <ul>
                     @foreach($pendingProblems as $pendingProblem)
-                        <li>{{$pendingProblem->title}}<span class="text-muted"> ({{$pendingProblem->status}})</span></li>
+                        <li>{{$pendingProblem->title}}<span
+                                class="text-muted"> ({{$pendingProblem->service->name}})</span>
+                        </li>
                     <!--<li>{{$pendingProblem}}</li>-->
                     @endforeach
                 </ul>
@@ -83,7 +99,8 @@
                 Solved Problems
                 <ul>
                     @foreach($solvedProblems as $solvedProblem)
-                        <li>{{$solvedProblem->title}}<span class="text-muted"> ({{$solvedProblem->status}})</span></li>
+                        <li>{{$solvedProblem->title}}<span
+                                class="text-muted"> ({{$solvedProblem->service->name}})</span></li>
                     <!--<li>{{$solvedProblem}}</li>-->
                     @endforeach
                 </ul>
@@ -94,11 +111,25 @@
                 Unsolved Problems
                 <ul>
                     @foreach($UnsolvedProblems as $UnsolvedProblem)
-                        <li>{{$UnsolvedProblem->title}}<span class="text-muted"> ({{$UnsolvedProblem->status}})</span></li>
+                        <li>{{$UnsolvedProblem->title}}<span
+                                class="text-muted"> ({{$UnsolvedProblem->service->name}})</span>
+                        </li>
                     <!--<li>{{$UnsolvedProblem}}</li>-->
                     @endforeach
                 </ul>
             @endif
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            @foreach($services as $service)
+                <h3>{{$service->name}}</h3>
+                <ul>
+                    @foreach($service->problems as $problem)
+                        <li>{{$problem->title}}</li>
+                    @endforeach
+                </ul>
+            @endforeach
         </div>
     </div>
 @endsection
