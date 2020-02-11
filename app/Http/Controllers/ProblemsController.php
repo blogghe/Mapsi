@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class ProblemsController extends Controller
 {
-    public function listProblems()
+    public function index()
     {
         $problems = Problem::all();
         //eloquent, doesn't get recognized in phpstorm
@@ -19,8 +19,6 @@ class ProblemsController extends Controller
         $UnsolvedProblems = Problem::where( 'status', 4 )->get();
         $services = Service::all();
 
-        //dd( $UnsolvedProblems );
-
         /*return view( 'problem.list', [
             'problems'         => $problems,
             'reportedProblems' => $reportedProblems,
@@ -30,9 +28,16 @@ class ProblemsController extends Controller
             'UnsolvedProblems' => $UnsolvedProblems,
         ] );*/
 
-        return view( 'problem.list', compact( 'problems', 'reportedProblems', 'ongoingProblems', 'pendingProblems', 'solvedProblems', 'UnsolvedProblems', 'services' ) );
-
+        return view( 'problems.index', compact( 'problems', 'reportedProblems', 'ongoingProblems', 'pendingProblems', 'solvedProblems', 'UnsolvedProblems', 'services' ) );
     }
+
+    public function create()
+    {
+        $services = Service::all();
+
+        return view('problems.create', compact('services'));
+    }
+
 
     public function createProblem()
     {
@@ -45,7 +50,7 @@ class ProblemsController extends Controller
         ] );
         Problem::create( $data );
 
-        return back();
+        return redirect('problems');
 
     }
 }

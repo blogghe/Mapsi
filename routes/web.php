@@ -47,6 +47,6 @@ Route::view( 'createLabel', 'label.create' );
 
 //Problems
 Route::view( 'viewProblem', 'problem.view' );
-Route::get( 'listProblems', 'ProblemsController@listProblems' );
-Route::post( 'listProblems', 'ProblemsController@createProblem' );
-Route::view( 'createProblem', 'problem.create' );
+Route::get( 'problems', 'ProblemsController@index' );
+Route::get( 'problems/create', 'ProblemsController@create' );
+Route::post( 'problems', 'ProblemsController@createProblem' );

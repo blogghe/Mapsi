@@ -3,22 +3,22 @@
         <a class="nav-link" href="/">Home</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="about">about</a>
+        <a class="nav-link" href="/about">about</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="contact">contact us</a>
+        <a class="nav-link" href="/contact">contact us</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="listContacts">contacts</a>
+        <a class="nav-link" href="/listContacts">contacts</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="listLabels">Labels</a>
+        <a class="nav-link" href="/listLabels">Labels</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="listServices">Service</a>
+        <a class="nav-link" href="/listServices">Service</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="listProblems">Problems</a>
+        <a class="nav-link" href="/problems">Problems</a>
     </li>
     <li> {{$username}}</li>
 </ul>
