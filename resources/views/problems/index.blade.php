@@ -15,9 +15,12 @@
 
     @foreach($problems as $problem)
         <div class="row">
-            <div class="col-3">{{$problem->id}}</div>
-
-            <div class="col-3">{{$problem->title}}</div>
+            <div class="col-3">
+                {{$problem->id}}
+            </div>
+            <div class="col-3">
+                <a href="/problems/{{$problem->id}}">{{$problem->title}}</a>
+            </div>
             <div class="col-3">{{$problem->service->name}}</div>
             <div class="col-3">{{$problem->status}}</div>
         </div>

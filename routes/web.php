@@ -46,3 +46,4 @@ Route::post( 'labels', 'LabelsController@store' );
 Route::get( 'problems', 'ProblemsController@index' );
 Route::get( 'problems/create', 'ProblemsController@create' );
 Route::post( 'problems', 'ProblemsController@store' );
+Route::get( 'problems/{problem}', 'ProblemsController@show' );

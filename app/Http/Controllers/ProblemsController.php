@@ -52,4 +52,11 @@ class ProblemsController extends Controller
         return redirect( '/problems' );
 
     }
+
+    public function show( Problem $problem )
+    {
+        //$problem = Problem::find($problem);
+        //$problem = Problem::where('id', $problem)->firstOrFail();
+        return view( 'problems.show', compact( 'problem' ) );
+    }
 }
