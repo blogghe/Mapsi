@@ -59,4 +59,21 @@ class ProblemsController extends Controller
         //$problem = Problem::where('id', $problem)->firstOrFail();
         return view( 'problems.show', compact( 'problem' ) );
     }
+
+    public function edit( Problem $problem )
+    {
+        $services = Service::all();
+        return view('problems.edit', compact('problem','services'));
+    }
+
+    public function update( Problem $problem )
+    {
+        $data = \request()->validate( [
+            'title'       => 'required|min:3',
+            'description' => 'required',
+        ] );
+        $problem->update($data);
+        return redirect( '/problems/'.$problem->id );
+
+    }
 }

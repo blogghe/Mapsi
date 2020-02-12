@@ -50,3 +50,5 @@ Route::get( 'problems', 'ProblemsController@index' );
 Route::get( 'problems/create', 'ProblemsController@create' );
 Route::post( 'problems', 'ProblemsController@store' );
 Route::get( 'problems/{problem}', 'ProblemsController@show' );
+Route::get( 'problems/{problem}/edit', 'ProblemsController@edit' );
+Route::patch( 'problems/{problem}', 'ProblemsController@update' );

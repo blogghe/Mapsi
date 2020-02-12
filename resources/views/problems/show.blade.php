@@ -8,6 +8,7 @@
     <div class="row">
         <div class="col-12">
             <h1>Problem details</h1>
+            <p><a href="/problems/{{$problem->id}}/edit">Edit</a></p>
         </div>
     </div>
 
