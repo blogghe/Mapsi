@@ -17,8 +17,9 @@
                 List Services
                 <ul>
                     @foreach($services as $service)
-                        <li>{{$service->name}}<span class="text-muted"> ({{$service->email}})</span></li>
-                    <!--<li>{{$service}}</li>-->
+                        <li>
+                            <a href="/services/{{$service->id}}">{{$service->name}}</a><span class="text-muted"> ({{$service->email}})</span>
+                        </li>
                     @endforeach
                 </ul>
             @else

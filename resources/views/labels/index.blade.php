@@ -9,7 +9,6 @@
         <div class="col-12">
             <h1>list label</h1>
             <p><a href="labels/create">Add new label</a></p>
-
         </div>
     </div>
     <div class="row">
@@ -18,8 +17,9 @@
                 List Labels
                 <ul>
                     @foreach($labels as $label)
-                        <li>{{$label->name}}</li>
-                    <!--<li>{{$label}}</li>-->
+                        <li>
+                            <a href="/labels/{{$label->id}}"> {{$label->name}}</a>
+                        </li>
                     @endforeach
                 </ul>
             @else

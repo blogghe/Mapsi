@@ -42,4 +42,10 @@ class ServicesController extends Controller
 
         }
     }
+
+    public function show( Service $service )
+    {
+        //$service = Service::where('id', $service)->firstOrFail();
+        return view( 'services.show', compact( 'service' ) );
+    }
 }

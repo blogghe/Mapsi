@@ -14,7 +14,9 @@
     @foreach($contacts as $contact)
         <div class="row">
             <div class="col-3">{{$contact->id}}</div>
-            <div class="col-3">{{$contact->name}}</div>
+            <div class="col-3">
+                <a href="/contacts/{{$contact->id}}"> {{$contact->name}}</a>
+            </div>
             <div class="col-3">{{$contact->email}}</div>
             <div class="col-3">{{$contact->gender}}</div>
         </div>
@@ -26,7 +28,6 @@
                 <ul>
                     @foreach($contacts as $contact)
                         <li>{{$contact->name}}<span class="text-muted"> ({{$contact->email}})</span></li>
-                    <!--<li>{{$contact}}</li>-->
                     @endforeach
                 </ul>
             @else

@@ -31,16 +31,19 @@ Route::view( 'user', 'userInfo' );
 Route::get( 'contacts', 'ContactsController@index' );
 Route::get( 'contacts/create', 'ContactsController@create' );
 Route::post( 'contacts', 'ContactsController@store' );
+Route::get( 'contacts/{contact}', 'ContactsController@show' );
 
 //Services
 Route::get( 'services', 'ServicesController@index' );
 Route::get( 'services/create', 'ServicesController@create' );
 Route::post( 'services', 'ServicesController@store' );
+Route::get( 'services/{service}', 'ServicesController@show' );
 
 //Labels
 Route::get( 'labels', 'LabelsController@index' );
 Route::get( 'labels/create', 'LabelsController@create' );
 Route::post( 'labels', 'LabelsController@store' );
+Route::get( 'labels/{label}', 'LabelsController@show' );
 
 //Problems
 Route::get( 'problems', 'ProblemsController@index' );
