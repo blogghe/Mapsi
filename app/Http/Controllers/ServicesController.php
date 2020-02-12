@@ -7,31 +7,39 @@ use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
-	public function listServices()
-	{
-		$services = Service::all();
+    public function index()
+    {
+        $services = Service::all();
 
-		return view( 'service.list', [ 'services' => $services ] );
+        return view( 'services.index', [ 'services' => $services ] );
 
-	}
+    }
 
-	public function createService()
-	{
-		{
-			$data = \request()->validate( [
-				'name'  => 'required|min:3',
-				'email' => 'required|email',
-			] );
-			$service = new Service();
-			$name = \request( 'name' );
-			$email = \request( 'email' );
-			//dd(\request('email'));
-			$service->name = $name;
-			$service->email = $email;
-			$service->save();
+    public function create()
+    {
+        $services = Service::all();
 
-			return back();
+        return view( 'services.create', compact( 'services' ) );
 
-		}
-	}
+    }
+
+    public function store()
+    {
+        {
+            $data = \request()->validate( [
+                'name'  => 'required|min:3',
+                'email' => 'required|email',
+            ] );
+            $service = new Service();
+            $name = \request( 'name' );
+            $email = \request( 'email' );
+            //dd(\request('email'));
+            $service->name = $name;
+            $service->email = $email;
+            $service->save();
+
+            return redirect( '/services' );
+
+        }
+    }
 }

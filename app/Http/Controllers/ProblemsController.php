@@ -35,11 +35,10 @@ class ProblemsController extends Controller
     {
         $services = Service::all();
 
-        return view('problems.create', compact('services'));
+        return view( 'problems.create', compact( 'services' ) );
     }
 
-
-    public function createProblem()
+    public function store()
     {
 
         $data = \request()->validate( [
@@ -50,7 +49,7 @@ class ProblemsController extends Controller
         ] );
         Problem::create( $data );
 
-        return redirect('problems');
+        return redirect( '/problems' );
 
     }
 }

@@ -1,18 +1,18 @@
 @extends('layout')
 
 @section('title')
-    List Contacts
+    Add new contact
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>list contact</h1>
+            <h1>Add new contact</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="listContacts" method="POST" class="pb-5">
+            <form action="/contacts" method="POST" class="pb-5">
                 <div class="form-group">
                     <label for="name">Name:
                         <input type="text" name="name" value="{{old('name')}}" class="form-control">
@@ -80,21 +80,6 @@
                 <button type="submit" class="btn btn-primary">Add contact</button>
                 @csrf
             </form>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            @if( ! empty($contacts))
-                List contacts
-                <ul>
-                    @foreach($contacts as $contact)
-                        <li>{{$contact->name}}<span class="text-muted"> ({{$contact->email}})</span></li>
-                    <!--<li>{{$contact}}</li>-->
-                    @endforeach
-                </ul>
-            @else
-                No contacts created yet
-            @endif
         </div>
     </div>
 @endsection

@@ -9,13 +9,13 @@
         <a class="nav-link" href="/contact">contact us</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/listContacts">contacts</a>
+        <a class="nav-link" href="/contacts">contacts</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/listLabels">Labels</a>
+        <a class="nav-link" href="/labels">Labels</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="/listServices">Service</a>
+        <a class="nav-link" href="/services">Service</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="/problems">Problems</a>

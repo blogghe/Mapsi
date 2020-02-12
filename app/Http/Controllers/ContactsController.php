@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Date;
 
 class ContactsController extends Controller
 {
-	public function listContacts()
+	public function index()
 	{
 		$contacts = Contact::all();
-
-		return view( 'contact.list', [ 'contacts' => $contacts ] );
+		//dd($contacts);
+		return view( 'contacts.index', [ 'contacts' => $contacts ] );
 
 	}
 
-	public function createContact()
+	public function store()
 	{
 		$data = \request()->validate( [
 			'name'      => 'required|min:3',
@@ -37,8 +37,14 @@ class ContactsController extends Controller
 		$contact->email = \request( 'email' );
 		$contact->save();
 
-		return back();
+        return redirect('/contacts');
 	}
+
+	public function create()
+    {
+        $contacts = Contact::all();
+        return view('contacts.create', compact('contacts'));
+    }
 
 	private function FillInDefaultContact()
 	{

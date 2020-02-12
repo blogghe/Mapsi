@@ -7,15 +7,21 @@ use Illuminate\Http\Request;
 
 class LabelsController extends Controller
 {
-	public function listLabels()
+	public function index()
 	{
 		$labels = Label::all();
-
-		return view( 'label.list', [ 'labels' => $labels ] );
+		//dd($labels);
+		return view( 'labels.index', [ 'labels' => $labels ] );
 
 	}
 
-	public function createLabel()
+	public function create()
+    {
+        $labels = Label::all();
+        return view('labels.create', compact('services'));
+
+    }
+	public function store()
 	{
 		$data = \request()->validate( [
 			'name' => 'required|min:3',
@@ -31,7 +37,7 @@ class LabelsController extends Controller
 		//mass assigment
 		Label::create($data);
 
-		return back();
+		return redirect('/labels');
 
 	}
 }

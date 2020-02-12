@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title')
-    Add new Problems
+    Add new Problem
 @endsection
 
 @section('content')

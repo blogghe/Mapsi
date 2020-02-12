@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 //general pages
 Route::get( '/', function () {
-	return view( 'home' );
+    return view( 'home' );
 } );
 
 Route::get( 'contact', function () {
-	return view( 'contact' );
+    return view( 'contact' );
 } );
 //differently but cleaner written
 Route::view( 'about', 'about' );
@@ -28,25 +28,21 @@ Route::view( 'about', 'about' );
 Route::view( 'user', 'userInfo' );
 
 //Contacts
-Route::view( 'viewContact', 'contact.view' );
-Route::get( 'listContacts', 'ContactsController@listContacts' );
-Route::post( 'listContacts', 'ContactsController@createContact' );
-Route::view( 'createContact', 'contact.create' );
+Route::get( 'contacts', 'ContactsController@index' );
+Route::get( 'contacts/create', 'ContactsController@create' );
+Route::post( 'contacts', 'ContactsController@store' );
 
 //Services
-Route::view( 'viewService', 'service.view' );
-Route::get( 'listServices', 'ServicesController@listServices' );
-Route::post( 'listServices', 'ServicesController@createService' );
-Route::view( 'createService', 'service.create' );
+Route::get( 'services', 'ServicesController@index' );
+Route::get( 'services/create', 'ServicesController@create' );
+Route::post( 'services', 'ServicesController@store' );
 
 //Labels
-Route::view( 'viewLabel', 'label.view' );
-Route::get( 'listLabels', 'LabelsController@listLabels' );
-Route::post( 'listLabels', 'LabelsController@createLabel' );
-Route::view( 'createLabel', 'label.create' );
+Route::get( 'labels', 'LabelsController@index' );
+Route::get( 'labels/create', 'LabelsController@create' );
+Route::post( 'labels', 'LabelsController@store' );
 
 //Problems
-Route::view( 'viewProblem', 'problem.view' );
 Route::get( 'problems', 'ProblemsController@index' );
 Route::get( 'problems/create', 'ProblemsController@create' );
-Route::post( 'problems', 'ProblemsController@createProblem' );
+Route::post( 'problems', 'ProblemsController@store' );
