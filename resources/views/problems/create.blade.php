@@ -11,11 +11,17 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
-            <form action="/problems" method="POST" class="pb-5">
-                @include('problems.form')
-                <button type="submit" class="btn btn-primary">Add Problem</button>
-            </form>
-        </div>
+        @if(!$services->isEmpty())
+            <div class="col-12">
+                <form action="/problems" method="POST" class="pb-5">
+                    @include('problems.form')
+                    <button type="submit" class="btn btn-primary">Add Problem</button>
+                </form>
+            </div>
+        @else
+            <div class="col-12">
+                <p>No services found, <a href="/services/create">create</a> a service first.</p>
+            </div>
+        @endif
     </div>
 @endsection

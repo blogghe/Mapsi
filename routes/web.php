@@ -46,9 +46,12 @@ Route::post( 'labels', 'LabelsController@store' );
 Route::get( 'labels/{label}', 'LabelsController@show' );
 
 //Problems
-Route::get( 'problems', 'ProblemsController@index' );
-Route::get( 'problems/create', 'ProblemsController@create' );
-Route::post( 'problems', 'ProblemsController@store' );
-Route::get( 'problems/{problem}', 'ProblemsController@show' );
-Route::get( 'problems/{problem}/edit', 'ProblemsController@edit' );
-Route::patch( 'problems/{problem}', 'ProblemsController@update' );
+//Route::get( 'problems', 'ProblemsController@index' );
+//Route::get( 'problems/create', 'ProblemsController@create' );
+//Route::post( 'problems', 'ProblemsController@store' );
+//Route::get( 'problems/{problem}', 'ProblemsController@show' );
+//Route::get( 'problems/{problem}/edit', 'ProblemsController@edit' );
+//Route::patch( 'problems/{problem}', 'ProblemsController@update' );
+//Route::delete('problems/{problem}','ProblemsController@destroy');
+
+Route::resource('problems', 'ProblemsController');

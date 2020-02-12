@@ -9,6 +9,11 @@
         <div class="col-12">
             <h1>Problem details</h1>
             <p><a href="/problems/{{$problem->id}}/edit">Edit</a></p>
+            <form action="/problems/{{$problem->id}}" method="POST">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger">delete</button>
+            </form>
         </div>
     </div>
 

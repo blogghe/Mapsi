@@ -34,23 +34,17 @@ class ProblemsController extends Controller
     public function create()
     {
         $services = Service::all();
+        $problem = new Problem();
 
-        return view( 'problems.create', compact( 'services' ) );
+        return view( 'problems.create', compact( 'services', 'problem' ) );
     }
 
     public function store()
     {
-
-        $data = \request()->validate( [
-            'title'       => 'required|min:3',
-            'status'      => 'required',
-            'description' => 'required',
-            'service_id'  => 'required',
-        ] );
+        $data = $this->validateRequest();
         Problem::create( $data );
 
         return redirect( '/problems' );
-
     }
 
     public function show( Problem $problem )
@@ -63,17 +57,32 @@ class ProblemsController extends Controller
     public function edit( Problem $problem )
     {
         $services = Service::all();
-        return view('problems.edit', compact('problem','services'));
+
+        return view( 'problems.edit', compact( 'problem', 'services' ) );
     }
 
     public function update( Problem $problem )
     {
-        $data = \request()->validate( [
-            'title'       => 'required|min:3',
-            'description' => 'required',
-        ] );
-        $problem->update($data);
-        return redirect( '/problems/'.$problem->id );
+        $data = $this->validateRequest();
+        $problem->update( $data );
 
+        return redirect( '/problems/' . $problem->id );
+    }
+
+    public function destroy( Problem $problem )
+    {
+        $problem->delete();
+
+        return redirect( '/problems' );
+    }
+
+    private function validateRequest()
+    {
+        return \request()->validate( [
+            'title'       => 'required|min:3',
+            'status'      => 'required',
+            'description' => 'required',
+            'service_id'  => 'required',
+        ] );
     }
 }
