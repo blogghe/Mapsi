@@ -67,3 +67,7 @@ Route::resource('labels', 'LabelsController');
 //Route::patch( 'problems/{problem}', 'ProblemsController@update' );
 //Route::delete('problems/{problem}','ProblemsController@destroy');
 Route::resource('problems', 'ProblemsController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
