@@ -17,35 +17,64 @@ class ContactsController extends Controller
 
     }
 
+    public function create()
+    {
+        $contact = new Contact();
+
+        return view( 'contacts.create', compact( 'contact' ) );
+    }
+
     public function store()
     {
-        $data = \request()->validate( [
-            'name'      => 'required|min:3',
-            'email'     => 'required|email',
-            'street'    => '',
-            'sNumber'   => 'nullable|integer',
-            'bus'       => '',
-            'city'      => '',
-            'gender'    => '',
-            'zip'       => 'nullable|integer',
-            'phone'     => 'nullable|integer',
-            'birthdate' => 'nullable|date',
-        ] );
-        $contact = $this->FillInDefaultContact();
-        $name = \request( 'name' );
-        $contact->name = $name;
-        //$contact->street = \request( 'street' );
-        $contact->email = \request( 'email' );
-        $contact->save();
+        $data = $this->validateRequest();
+
+        Contact::create( $data );
 
         return redirect( '/contacts' );
     }
 
-    public function create()
+    public function show( Contact $contact )
     {
-        $contacts = Contact::all();
+        //dd($contact);
 
-        return view( 'contacts.create', compact( 'contacts' ) );
+        //$contact = Contact::where('id', $contact)->firstOrFail();
+        return view( 'contacts.show', compact( 'contact' ) );
+    }
+
+    public function edit( Contact $contact )
+    {
+        return view( 'contacts.edit', compact( 'contact' ) );
+    }
+
+    public function update( Contact $contact )
+    {
+        $data = $this->validateRequest();
+        $contact->update( $data );
+
+        return redirect( '/contacts/' . $contact->id );
+    }
+
+    public function destroy( Contact $contact )
+    {
+        $contact->delete();
+
+        return redirect( '/contacts' );
+    }
+
+    private function validateRequest()
+    {
+        return \request()->validate( [
+            'name'      => 'required|min:3',
+            'email'     => 'required|email',
+            'street'    => 'nullable',
+            'sNumber'   => 'nullable|integer',
+            'bus'       => 'nullable',
+            'city'      => 'nullable',
+            'gender'    => 'nullable',
+            'zip'       => 'nullable|integer',
+            'phone'     => 'nullable|integer',
+            'birthdate' => 'nullable|date',
+        ] );
     }
 
     private function FillInDefaultContact()
@@ -65,11 +94,4 @@ class ContactsController extends Controller
         return $contact;
     }
 
-    public function show( Contact $contact )
-    {
-        //dd($contact);
-
-        //$contact = Contact::where('id', $contact)->firstOrFail();
-        return view( 'contacts.show', compact( 'contact' ) );
-    }
 }

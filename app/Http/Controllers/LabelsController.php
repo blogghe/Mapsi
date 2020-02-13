@@ -18,17 +18,13 @@ class LabelsController extends Controller
 
     public function create()
     {
-        $labels = Label::all();
-
-        return view( 'labels.create', compact( 'services' ) );
+        $label = new Label();
+        return view( 'labels.create', compact( 'label' ) );
 
     }
 
     public function store()
     {
-        $data = \request()->validate( [
-            'name' => 'required|min:3',
-        ] );
 
         /*
          * Old simple way to store data
@@ -38,6 +34,7 @@ class LabelsController extends Controller
         $label->save();*/
 
         //mass assigment
+        $data = $this->validateRequest();
         Label::create( $data );
 
         return redirect( '/labels' );
@@ -47,6 +44,33 @@ class LabelsController extends Controller
     public function show( Label $label )
     {
         //$label = Label::where('id', $label)->firstOrFail();
-        return view('labels.show', compact('label'));
+        return view( 'labels.show', compact( 'label' ) );
+    }
+
+    public function edit( Label $label )
+    {
+        return view( 'labels.edit', compact( 'label' ) );
+    }
+
+    public function update( Label $label )
+    {
+        $data = $this->validateRequest();
+        $label->update( $data );
+
+        return redirect( '/labels/' . $label->id );
+    }
+
+    public function destroy( Label $label )
+    {
+        $label->delete();
+
+        return redirect( '/labels' );
+    }
+
+    private function validateRequest()
+    {
+        return \request()->validate( [
+            'name' => 'required|min:3',
+        ] );
     }
 }

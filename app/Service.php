@@ -8,6 +8,11 @@ class Service extends Model
 {
     protected $guarded = [];
 
+    protected $attributes = [
+        'name'  => '',
+        'email' => '',
+    ];
+
     public function problems()
     {
         return $this->hasMany( Problem::class );

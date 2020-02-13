@@ -1,20 +1,21 @@
 @extends('layout')
 
 @section('title')
-    Add new Service
+    Edit Service
 @endsection
 
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>Add new service</h1>
+            <h1>Edit service</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="/services" method="POST" class="pb-5">
+            <form action="/services/{{$service->id}}" method="POST" class="pb-5">
+                @method('PATCH')
                 @include('services.form')
-                <button type="submit" class="btn btn-primary">Add Service</button>
+                <button type="submit" class="btn btn-primary">Edit Service</button>
             </form>
         </div>
     </div>
