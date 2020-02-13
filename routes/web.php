@@ -18,9 +18,10 @@ Route::get( '/', function () {
     return view( 'home' );
 } );
 
-Route::get( 'contact', function () {
-    return view( 'contact' );
-} );
+Route::get('/contact','ContactFormController@create');
+Route::post('/contact', 'ContactFormController@store');
+
+
 //differently but cleaner written
 Route::view( 'about', 'about' );
 
