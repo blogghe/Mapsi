@@ -20,7 +20,13 @@ class ContactFormController extends Controller
             'email'   => 'required|email',
             'message' => 'required',
         ] );
-        Mail::to('test@test.com')->send(new ContactFormMail($data));
-        //Send an Email
+        //todo won't work on vmuxintrdev03
+        //Mail::to('test@test.com')->send(new ContactFormMail($data));
+        //return redirect('contact')->with('message', 'Thanks for your message.');
+
+        session()->flash( 'message', 'Thanks for your message.' );
+
+        return redirect( 'contact' );
+
     }
 }
