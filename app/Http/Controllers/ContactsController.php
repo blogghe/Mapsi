@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Date;
 
 class ContactsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware( 'auth' );
+    }
+
     public function index()
     {
         $contacts = Contact::all();

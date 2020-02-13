@@ -8,8 +8,19 @@ use Illuminate\Http\Request;
 
 class ProblemsController extends Controller
 {
+    /**
+     * ProblemsController constructor.
+     */
+    public function __construct()
+    {
+        //$this->middleware('auth')->except(['index']);
+        $this->middleware('auth');
+    }
+
     public function index()
     {
+
+
         $problems = Problem::all();
         //eloquent, doesn't get recognized in phpstorm
         $reportedProblems = Problem::ongoing()->get();
