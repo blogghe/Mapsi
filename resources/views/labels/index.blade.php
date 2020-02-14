@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
             <h1>list label</h1>
-            <p><a href="labels/create">Add new label</a></p>
+            <p><a href="{{route('labels.create')}}">Add new label</a></p>
         </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
                 <ul>
                     @foreach($labels as $label)
                         <li>
-                            <a href="/labels/{{$label->id}}"> {{$label->name}}</a>
+                            <a href="{{route('labels.update', ['label'=>$label])}}"> {{$label->name}}</a>
                         </li>
                     @endforeach
                 </ul>

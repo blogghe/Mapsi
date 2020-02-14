@@ -7,7 +7,6 @@
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
-
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
@@ -15,22 +14,25 @@
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/about">about</a>
+                    <a class="nav-link" href="{{route('about.create')}}">about</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contact">contact us</a>
+                    <a class="nav-link" href="{{route('contact.create')}}">contact us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/contacts">contacts</a>
+                    <a class="nav-link" href="{{action([\App\Http\Controllers\ContactFormController::class , 'create'])}}">contact us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/labels">Labels</a>
+                    <a class="nav-link" href="{{route('contacts.index')}}">contacts</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/services">Service</a>
+                    <a class="nav-link" href="{{route('labels.index')}}">Labels</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/problems">Problems</a>
+                    <a class="nav-link" href="{{route('services.index')}}">Service</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('problems.index')}}">Problems</a>
                 </li>
             </ul>
 

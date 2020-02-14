@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-12">
             <h1>Contact details</h1>
-            <p><a href="/contacts/{{$contact->id}}/edit">Edit</a></p>
-            <form action="/contacts/{{$contact->id}}" method="POST">
+            <p><a href="{{route('contacts.edit',['contact' =>$contact])}}">Edit</a></p>
+            <form action="{{route('contacts.destroy', ['contact' =>$contact])}}" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">delete</button>

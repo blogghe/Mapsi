@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-12">
             <h1>list service</h1>
-            <p><a href="services/create">Add new service</a></p>
+            <p><a href="{{route('services.create')}}">Add new service</a></p>
         </div>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
                 <ul>
                     @foreach($services as $service)
                         <li>
-                            <a href="/services/{{$service->id}}">{{$service->name}}</a><span class="text-muted"> ({{$service->email}})</span>
+                            <a href="{{route('services.update',['service' => $service])}}">{{$service->name}}</a><span class="text-muted"> ({{$service->email}})</span>
                         </li>
                     @endforeach
                 </ul>

@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="/contacts" method="POST" class="pb-5">
+            <form action="{{route('contacts.store')}}" method="POST" class="pb-5">
                 @include('contacts.form')
                 <button type="submit" class="btn btn-primary">Add contact</button>
             </form>

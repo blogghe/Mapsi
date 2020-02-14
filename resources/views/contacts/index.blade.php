@@ -8,14 +8,14 @@
     <div class="row">
         <div class="col-12">
             <h1>list contact</h1>
-            <p><a href="contacts/create">Add new contact</a></p>
+            <p><a href="{{route('contacts.create')}}">Add new contact</a></p>
         </div>
     </div>
     @foreach($contacts as $contact)
         <div class="row">
             <div class="col-3">{{$contact->id}}</div>
             <div class="col-3">
-                <a href="/contacts/{{$contact->id}}"> {{$contact->name}}</a>
+                <a href="{{route('contacts.update', ['contact'=> $contact])}}"> {{$contact->name}}</a>
             </div>
             <div class="col-3">{{$contact->email}}</div>
             <div class="col-3">{{$contact->gender}}</div>

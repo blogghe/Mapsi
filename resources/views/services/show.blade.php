@@ -8,8 +8,8 @@
     <div class="row">
         <div class="col-12">
             <h1>Service details</h1>
-            <p><a href="/services/{{$service->id}}/edit">Edit</a></p>
-            <form action="/services/{{$service->id}}" method="POST">
+            <p><a href="{{route('services.edit',['service'=>$service])}}">Edit</a></p>
+            <form action="{{route('services.destroy',['service' =>$service])}}" method="POST">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">delete</button>
@@ -33,7 +33,7 @@
                 {{$problem->id}}
             </div>
             <div class="col-3">
-                <a href="/problems/{{$problem->id}}">{{$problem->title}}</a>
+                <a href="{{route('problems.show',['problem'=>$problem])}}">{{$problem->title}}</a>
             </div>
             <div class="col-3">{{$problem->service->name}}</div>
             <div class="col-3">{{$problem->status}}</div>

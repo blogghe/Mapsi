@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="/services/{{$service->id}}" method="POST" class="pb-5">
+            <form action="{{route('services.update',['service' => $service])}}" method="POST" class="pb-5">
                 @method('PATCH')
                 @include('services.form')
                 <button type="submit" class="btn btn-primary">Edit Service</button>

@@ -12,7 +12,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <form action="/labels/{{$label->id}}" method="POST">
+            <form action="{{route('labels.update',['label' =>$label])}}" method="POST">
                 @method('PATCH')
                 @include('labels.form')
                 <button type="submit" class="btn btn-primary">Edit label</button>
