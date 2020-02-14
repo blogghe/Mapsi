@@ -14,7 +14,7 @@
                         </div>
                     @endif
                     <div class="new-class">You are logged in!</div>
-
+                    <my-button text="mapsi button"></my-button>
                 </div>
             </div>
         </div>
