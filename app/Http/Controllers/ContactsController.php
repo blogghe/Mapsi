@@ -34,6 +34,7 @@ class ContactsController extends Controller
         $data = $this->validateRequest();
 
         Contact::create( $data );
+        session()->flash( 'message', 'Contact created.' );
 
         return redirect( '/contacts' );
     }
@@ -55,6 +56,7 @@ class ContactsController extends Controller
     {
         $data = $this->validateRequest();
         $contact->update( $data );
+        session()->flash( 'message', 'Contact updated.' );
 
         return redirect( '/contacts/' . $contact->id );
     }
@@ -62,6 +64,7 @@ class ContactsController extends Controller
     public function destroy( Contact $contact )
     {
         $contact->delete();
+        session()->flash( 'message', 'Contact deleted.' );
 
         return redirect( '/contacts' );
     }

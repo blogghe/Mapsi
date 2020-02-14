@@ -22,7 +22,11 @@
 <body>
     <div id="app">
         @include('nav')
-
+        @if(session()->has('message'))
+            <div class="alert alert-success" role="alert">
+                {{session()->get('message')}}
+            </div>
+        @endif
         <main class="py-4">
             <div class="container">
                 @yield('content')

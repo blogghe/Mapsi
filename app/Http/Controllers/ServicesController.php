@@ -40,6 +40,7 @@ class ServicesController extends Controller
 
         $data = $this->validateRequest();
         Service::create( $data );
+        session()->flash( 'message', 'Service created.' );
 
         return redirect( '/services' );
     }
@@ -59,6 +60,7 @@ class ServicesController extends Controller
     {
         $data = $this->validateRequest();
         $service->update( $data );
+        session()->flash( 'message', 'Service updated.' );
 
         return redirect( 'services/' . $service->id );
 
@@ -67,6 +69,7 @@ class ServicesController extends Controller
     public function destroy( Service $service )
     {
         $service->delete();
+        session()->flash( 'message', 'Service deleted.' );
 
         return redirect( '/services' );
     }

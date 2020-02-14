@@ -54,6 +54,7 @@ class ProblemsController extends Controller
     {
         $data = $this->validateRequest();
         Problem::create( $data );
+        session()->flash( 'message', 'Problem created.' );
 
         return redirect( '/problems' );
     }
@@ -68,6 +69,7 @@ class ProblemsController extends Controller
     public function edit( Problem $problem )
     {
         $services = Service::all();
+        session()->flash( 'message', 'Problem updated.' );
 
         return view( 'problems.edit', compact( 'problem', 'services' ) );
     }
@@ -83,6 +85,7 @@ class ProblemsController extends Controller
     public function destroy( Problem $problem )
     {
         $problem->delete();
+        session()->flash( 'message', 'Problem deleted.' );
 
         return redirect( '/problems' );
     }

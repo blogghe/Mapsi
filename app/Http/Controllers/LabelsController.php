@@ -41,6 +41,7 @@ class LabelsController extends Controller
         //mass assigment
         $data = $this->validateRequest();
         Label::create( $data );
+        session()->flash( 'message', 'Label created.' );
 
         return redirect( '/labels' );
 
@@ -61,6 +62,7 @@ class LabelsController extends Controller
     {
         $data = $this->validateRequest();
         $label->update( $data );
+        session()->flash( 'message', 'Label updated.' );
 
         return redirect( '/labels/' . $label->id );
     }
@@ -68,6 +70,7 @@ class LabelsController extends Controller
     public function destroy( Label $label )
     {
         $label->delete();
+        session()->flash( 'message', 'Label deleted.' );
 
         return redirect( '/labels' );
     }
