@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\NewProblemHasBeenReportedEvent;
+use App\Mail\NewProblemReportedMail;
 use App\Problem;
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class ProblemsController extends Controller
 {
@@ -53,8 +56,12 @@ class ProblemsController extends Controller
     public function store()
     {
         $data = $this->validateRequest();
-        Problem::create( $data );
+        $problem = Problem::create( $data );
+
+
+        event(new NewProblemHasBeenReportedEvent($problem));
         session()->flash( 'message', 'Problem created.' );
+
 
         return redirect( '/problems' );
     }
