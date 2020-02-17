@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Date;
+use Intervention\Image\Facades\Image;
 
 class ContactsController extends Controller
 {
@@ -118,6 +119,9 @@ class ContactsController extends Controller
                 'image' => \request()->image->store( 'uploads', 'public' ),
             ] );
         }
+
+        $image= Image::make(public_path('storage/' . $contact->image))->fit(300,300);
+        $image->save();
 
     }
 
