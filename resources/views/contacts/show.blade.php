@@ -27,4 +27,9 @@
             <p><strong>Gender</strong> {{$contact->gender}}</p>
         </div>
     </div>
+    @if($contact->image)
+        <div class="row">
+            <div class="col-12"><img src="{{asset('storage/' . $contact->image)}}" alt="" class="img-thumbnail"></div>
+        </div>
+    @endif
 @endsection

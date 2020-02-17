@@ -31,9 +31,10 @@ class ContactsController extends Controller
 
     public function store()
     {
-        $data = $this->validateRequest();
+        $contact = Contact::create( $this->validateRequest() );
 
-        Contact::create( $data );
+        $this->storeImage( $contact );
+
         session()->flash( 'message', 'Contact created.' );
 
         return redirect( '/contacts' );
@@ -54,8 +55,9 @@ class ContactsController extends Controller
 
     public function update( Contact $contact )
     {
-        $data = $this->validateRequest();
-        $contact->update( $data );
+
+        $contact->update( $this->validateRequest() );
+        $this->storeImage( $contact );
         session()->flash( 'message', 'Contact updated.' );
 
         return redirect( '/contacts/' . $contact->id );
@@ -71,7 +73,7 @@ class ContactsController extends Controller
 
     private function validateRequest()
     {
-        return \request()->validate( [
+        $validatedData = \request()->validate( [
             'name'      => 'required|min:3',
             'email'     => 'required|email',
             'street'    => 'nullable',
@@ -83,6 +85,13 @@ class ContactsController extends Controller
             'phone'     => 'nullable|integer',
             'birthdate' => 'nullable|date',
         ] );
+        if ( \request()->hasFile( 'image' ) ) {
+            \request()->validate( [
+                'image' => 'file|image|max:5000',
+            ] );
+        }
+
+        return $validatedData;
     }
 
     private function FillInDefaultContact()
@@ -100,6 +109,16 @@ class ContactsController extends Controller
         $contact->birthdate = date( "Y/m/d" );
 
         return $contact;
+    }
+
+    private function storeImage( $contact )
+    {
+        if ( \request()->has( 'image' ) ) {
+            $contact->update( [
+                'image' => \request()->image->store( 'uploads', 'public' ),
+            ] );
+        }
+
     }
 
 }
