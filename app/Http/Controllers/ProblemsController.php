@@ -17,21 +17,28 @@ class ProblemsController extends Controller
     public function __construct()
     {
         //$this->middleware('auth')->except(['index']);
-        $this->middleware('auth');
+        $this->middleware( 'auth' );
     }
 
     public function index()
     {
 
+        //$problems = Problem::all();
+        $problems = Problem::with( 'service' )->get();
 
-        $problems = Problem::all();
+        //dd($problems->toArray());
         //eloquent, doesn't get recognized in phpstorm
-        $reportedProblems = Problem::ongoing()->get();
-        $ongoingProblems = Problem::where( 'status', 1 )->get();
-        $pendingProblems = Problem::where( 'status', 2 )->get();
-        $solvedProblems = Problem::where( 'status', 3 )->get();
-        $UnsolvedProblems = Problem::where( 'status', 4 )->get();
-        $services = Service::all();
+        $reportedProblems = Problem::with( 'service' )->ongoing()->get();
+        $ongoingProblems = Problem::with( 'service' )
+            ->where( 'status', 1 )->get();
+        $pendingProblems = Problem::with( 'service' )
+            ->where( 'status', 2 )->get();
+        $solvedProblems = Problem::with( 'service' )
+            ->where( 'status', 3 )->get();
+        $UnsolvedProblems = Problem::with( 'service' )
+            ->where( 'status', 4 )->get();
+        //$services = Service::all();
+        $services = Service::with( 'problems' )->get();
 
         /*return view( 'problem.list', [
             'problems'         => $problems,
@@ -58,10 +65,8 @@ class ProblemsController extends Controller
         $data = $this->validateRequest();
         $problem = Problem::create( $data );
 
-
-        event(new NewProblemHasBeenReportedEvent($problem));
+        event( new NewProblemHasBeenReportedEvent( $problem ) );
         session()->flash( 'message', 'Problem created.' );
-
 
         return redirect( '/problems' );
     }
@@ -76,7 +81,6 @@ class ProblemsController extends Controller
     public function edit( Problem $problem )
     {
         $services = Service::all();
-        session()->flash( 'message', 'Problem updated.' );
 
         return view( 'problems.edit', compact( 'problem', 'services' ) );
     }
@@ -84,6 +88,8 @@ class ProblemsController extends Controller
     public function update( Problem $problem )
     {
         $data = $this->validateRequest();
+        session()->flash( 'message', 'Problem updated.' );
+
         $problem->update( $data );
 
         return redirect( '/problems/' . $problem->id );

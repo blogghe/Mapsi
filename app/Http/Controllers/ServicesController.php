@@ -12,10 +12,13 @@ class ServicesController extends Controller
     {
         $this->middleware( 'auth' );
     }
+
     public function index()
     {
+        //$services = Service::with('problems')->get();
         $services = Service::all();
 
+        //dd($services->toArray());
         return view( 'services.index', [ 'services' => $services ] );
 
     }
@@ -24,6 +27,7 @@ class ServicesController extends Controller
     {
         $services = Service::all();
         $service = new Service();
+
         //dd($service);
 
         return view( 'services.create', compact( 'services', 'service' ) );

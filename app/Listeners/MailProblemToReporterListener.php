@@ -18,8 +18,7 @@ class MailProblemToReporterListener
      */
     public function handle($event)
     {
-        dd($event);
-        //dump('sendmail to '. $event->problem->service->email . ' after creation problem');
+        dump('sendmail to '. $event->problem->service->email . ' after creation problem');
         //Mail::to($event->problem->service->email)->send(new NewProblemReportedMail());
     }
 }

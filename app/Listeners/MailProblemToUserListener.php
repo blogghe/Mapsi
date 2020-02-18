@@ -18,7 +18,6 @@ class MailProblemToUserListener implements ShouldQueue
     public function handle($event)
     {
         //sleep(10);
-        dd($event);
         dump('sendmail to user after creation problem'  );
         ///Mail::to('logghebarteld@gmail.com')->send(new NewProblemReportedMail());
 
