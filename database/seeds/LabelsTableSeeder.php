@@ -11,6 +11,6 @@ class LabelsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Label::class, 3)->create();
+        factory(\App\Label::class, 20)->create();
     }
 }
