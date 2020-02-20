@@ -24,7 +24,7 @@ class ProblemsController extends Controller
     {
 
         //$problems = Problem::all();
-        $problems = Problem::with( 'service' )->paginate(10);
+        $problems = Problem::with( 'service' )->paginate( 10 );
 
         //dd($problems->toArray());
         //eloquent, doesn't get recognized in phpstorm
@@ -62,6 +62,8 @@ class ProblemsController extends Controller
 
     public function store()
     {
+        //authorize here makes backendcalls safe on command line
+        $this->authorize( 'create', Problem::class );
         $data = $this->validateRequest();
         $problem = Problem::create( $data );
 
@@ -97,6 +99,7 @@ class ProblemsController extends Controller
 
     public function destroy( Problem $problem )
     {
+        $this->authorize( 'delete', $problem );
         $problem->delete();
         session()->flash( 'message', 'Problem deleted.' );
 

@@ -5,12 +5,14 @@
 @endsection
 
 @section('content')
-    <div class="row">
-        <div class="col-12">
-            <h1>list problem</h1>
-            <p><a href="{{route('problems.create')}}">Add new problem</a></p>
+    @can('create', App\Problem::class)
+        <div class="row">
+            <div class="col-12">
+                <h1>list problem</h1>
+                <p><a href="{{route('problems.create')}}">Add new problem</a></p>
+            </div>
         </div>
-    </div>
+    @endcan
 
 
     @foreach($problems as $problem)
