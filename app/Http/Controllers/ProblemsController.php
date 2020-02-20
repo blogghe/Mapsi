@@ -24,7 +24,7 @@ class ProblemsController extends Controller
     {
 
         //$problems = Problem::all();
-        $problems = Problem::with( 'service' )->get();
+        $problems = Problem::with( 'service' )->paginate(10);
 
         //dd($problems->toArray());
         //eloquent, doesn't get recognized in phpstorm

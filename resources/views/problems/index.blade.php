@@ -25,4 +25,10 @@
             <div class="col-3">{{$problem->status}}</div>
         </div>
     @endforeach
+
+    <div class="row">
+        <div class="col-12 d-flex justify-content-center pt-4">
+            {{$problems->links()}}
+        </div>
+    </div>
 @endsection

@@ -15,8 +15,8 @@ class ServicesController extends Controller
 
     public function index()
     {
-        //$services = Service::with('problems')->get();
-        $services = Service::all();
+        $services = Service::with('problems')->paginate(10);
+        //$services = Service::all();
 
         //dd($services->toArray());
         return view( 'services.index', [ 'services' => $services ] );
