@@ -28,7 +28,7 @@ class ProblemsController extends Controller
 
         //dd($problems->toArray());
         //eloquent, doesn't get recognized in phpstorm
-        $reportedProblems = Problem::with( 'service' )->ongoing()->get();
+        /*$reportedProblems = Problem::with( 'service' )->ongoing()->get();
         $ongoingProblems = Problem::with( 'service' )
             ->where( 'status', 1 )->get();
         $pendingProblems = Problem::with( 'service' )
@@ -38,7 +38,7 @@ class ProblemsController extends Controller
         $UnsolvedProblems = Problem::with( 'service' )
             ->where( 'status', 4 )->get();
         //$services = Service::all();
-        $services = Service::with( 'problems' )->get();
+        $services = Service::with( 'problems' )->get();*/
 
         /*return view( 'problem.list', [
             'problems'         => $problems,
