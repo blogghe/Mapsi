@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProblemsTableSeeder extends Seeder
+class RolesTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +11,7 @@ class ProblemsTableSeeder extends Seeder
      */
     public function run()
     {
-        factory( \App\Problem::class, 20 )->create();
+        //        factory(\App\Label::class, 20)->create();
+        factory( \App\Role::class, 5 )->create();
     }
 }

@@ -99,8 +99,15 @@ Route::get( '/pivotTest', function () {
 
     $user = \App\User::first();
     //syn is detach  + attach function
-    $user->roles()->sync( [ 1, 2 ] );
+    //$user->roles()->sync( [ 1, 2 ] );
+    $user->roles()->sync([
+        1=>[
+            'name' =>'barteld',
+        ]
+    ]);
     //syncwithoutdetaching is only add
     //$user->roles()->dettach($roles);
 
+
+    dd($user->roles()->first()->pivot);
 } );

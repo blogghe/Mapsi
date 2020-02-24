@@ -17,6 +17,7 @@ class CreateRoleUser extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('role_id');
             $table->unsignedSmallInteger('user_id');
+            $table->string('name');
             $table->timestamps();
         });
     }
