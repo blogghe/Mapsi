@@ -18,12 +18,11 @@ Route::get( '/', function () {
     return view( 'home' );
 } );
 
-Route::get('/contact','ContactFormController@create')->name('contact.create');;
-Route::post('/contact', 'ContactFormController@store')->name('contact.store');
-
+Route::get( '/contact', 'ContactFormController@create' )->name( 'contact.create' );;
+Route::post( '/contact', 'ContactFormController@store' )->name( 'contact.store' );
 
 //differently but cleaner written
-Route::view( 'about', 'about' )->name('about.create');
+Route::view( 'about', 'about' )->name( 'about.create' );
 
 //User Pages
 Route::view( 'user', 'userInfo' );
@@ -36,7 +35,7 @@ Route::view( 'user', 'userInfo' );
 //Route::get( 'contacts/{contact}/edit', 'ContactsController@edit' );
 //Route::patch( 'contacts/{contact}', 'ContactsController@update' );
 //Route::delete('contacts/{contact}','ContactsController@destroy');
-Route::resource('contacts', 'ContactsController');
+Route::resource( 'contacts', 'ContactsController' );
 
 //Services
 //Route::get( 'services', 'ServicesController@index' );
@@ -46,7 +45,7 @@ Route::resource('contacts', 'ContactsController');
 //Route::get( 'services/{service}/edit', 'ServicesController@edit' );
 //Route::patch( 'services/{service}', 'ServicesController@update' );
 //Route::delete('services/{service}','ServicesController@destroy');
-Route::resource('services', 'ServicesController');
+Route::resource( 'services', 'ServicesController' );
 
 //Labels
 //Route::get( 'labels', 'LabelsController@index' );
@@ -56,7 +55,7 @@ Route::resource('services', 'ServicesController');
 //Route::get( 'labels/{label}/edit', 'LabelsController@edit' );
 //Route::patch( 'labels/{label}', 'LabelsController@update' );
 //Route::delete('labels/{label}','LabelsController@destroy');
-Route::resource('labels', 'LabelsController');
+Route::resource( 'labels', 'LabelsController' );
 
 //Problems
 //Route::get( 'problems', 'ProblemsController@index' );
@@ -66,8 +65,32 @@ Route::resource('labels', 'LabelsController');
 //Route::get( 'problems/{problem}/edit', 'ProblemsController@edit' );
 //Route::patch( 'problems/{problem}', 'ProblemsController@update' );
 //Route::delete('problems/{problem}','ProblemsController@destroy');
-Route::resource('problems', 'ProblemsController');
+Route::resource( 'problems', 'ProblemsController' );
+
+//Route::resource( 'udatas', 'UdataController' );
+Route::get( 'udata', 'UdataController@index2' )->name('udata.index');
+Route::get( 'udata/edit', 'UdataController@edit2' )->name('udata.edit');
+Route::patch( 'udata/{udata}', 'UdataController@update2' )->name('udata.update');
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get( '/home', 'HomeController@index' )->name( 'home' );
+
+Route::get( '/brol', function () {
+
+    $user = factory( \App\User::class )->create();
+    $user->udata()->create( [
+        'type'     => 0,
+        'language' => 0,
+        'selfmail' => 0,
+        'phone'    => '21332232',
+    ] );
+
+    /*$udata = new \App\Udata();
+    $udata->type =0;
+    $udata->phone ="23123123";
+    $udata->language =0;
+    $udata->selfmail =0;
+    $user->udata()->save($udata);*/
+
+} );

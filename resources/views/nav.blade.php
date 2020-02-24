@@ -19,11 +19,14 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('contact.create')}}">contact us</a>
                 </li>
-                <li class="nav-item">
+                <li  hidden=hidden class="nav-item">
                     <a class="nav-link" href="{{action([\App\Http\Controllers\ContactFormController::class , 'create'])}}">contact us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('contacts.index')}}">contacts</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('udata.index')}}">User data</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route('labels.index')}}">Labels</a>
