@@ -18,7 +18,7 @@ Route::get( '/', function () {
     return view( 'home' );
 } );
 
-Route::get( '/contact', 'ContactFormController@create' )->name( 'contact.create' );;
+Route::get( '/contact', 'ContactFormController@create' )->name( 'contact.create' );
 Route::post( '/contact', 'ContactFormController@store' )->name( 'contact.store' );
 
 //differently but cleaner written
@@ -68,15 +68,15 @@ Route::resource( 'labels', 'LabelsController' );
 Route::resource( 'problems', 'ProblemsController' );
 
 //Route::resource( 'udatas', 'UdataController' );
-Route::get( 'udata', 'UdataController@index2' )->name('udata.index');
-Route::get( 'udata/edit', 'UdataController@edit2' )->name('udata.edit');
-Route::patch( 'udata/{udata}', 'UdataController@update2' )->name('udata.update');
+Route::get( 'udata', 'UdataController@index2' )->name( 'udata.index' );
+Route::get( 'udata/edit', 'UdataController@edit2' )->name( 'udata.edit' );
+Route::patch( 'udata/{udata}', 'UdataController@update2' )->name( 'udata.update' );
 
 Auth::routes();
 
 Route::get( '/home', 'HomeController@index' )->name( 'home' );
 
-Route::get( '/brol', function () {
+Route::get( '/userdataTest', function () {
 
     $user = factory( \App\User::class )->create();
     $user->udata()->create( [
@@ -92,5 +92,15 @@ Route::get( '/brol', function () {
     $udata->language =0;
     $udata->selfmail =0;
     $user->udata()->save($udata);*/
+
+} );
+
+Route::get( '/pivotTest', function () {
+
+    $user = \App\User::first();
+    //syn is detach  + attach function
+    $user->roles()->sync( [ 1, 2 ] );
+    //syncwithoutdetaching is only add
+    //$user->roles()->dettach($roles);
 
 } );
