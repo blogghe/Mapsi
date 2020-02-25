@@ -21,6 +21,13 @@
 </head>
 <body>
     <div id="app">
+
+        {{trans_choice('text.language',1)}}
+        {{trans_choice('text.language',2)}}
+        <p>
+            {{__('text.introduction',['user' =>'barteld'])}}
+        </p>
+
         @include('nav')
         @if(session()->has('message'))
             <div class="alert alert-success" role="alert">
