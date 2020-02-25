@@ -29,9 +29,9 @@ class Contact extends Model
     public function genderOptions()
     {
         return [
-            0 => 'male',
-            1 => 'female',
-            2 => 'other',
+            0 => trans('text.male'),
+            1 => trans('text.female'),
+            2 => trans('text.other'),
         ];
     }
 }

@@ -7,7 +7,7 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>Edit contact</h1>
+            <h1>{{__('text.edit contact')}}</h1>
         </div>
     </div>
     <div class="row">
@@ -15,7 +15,7 @@
             <form action="{{route('contacts.update',['contact' =>$contact])}}" method="POST" enctype="multipart/form-data" class="pb-5">
                 @method('PATCH')
                 @include('contacts.form')
-                <button type="submit" class="btn btn-primary">Edit contact</button>
+                <button type="submit" class="btn btn-primary">{{__('text.edit contact')}}</button>
             </form>
         </div>
     </div>

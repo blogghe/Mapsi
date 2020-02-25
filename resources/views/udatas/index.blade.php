@@ -7,17 +7,17 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>User data</h1>
-            <p><a href="{{route('udata.edit')}}">Edit</a></p>
+            <h1>{{__('text.user data')}}</h1>
+            <p><a href="{{route('udata.edit')}}">{{__('text.edit')}}</a></p>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
-            <p><strong>name</strong> {{$user->name}}</p>
-            <p><strong>type</strong> {{$user->udata->type}}</p>
-            <p><strong>phone</strong> {{$user->udata->phone}}</p>
-            <p><strong>language</strong> {{$user->udata->language}}</p>
-            <p><strong>self mail</strong> {{$user->udata->selfmail}}</p>
+            <p><strong>{{__('text.name')}}</strong> {{$user->name}}</p>
+            <p><strong>{{__('text.type')}}</strong> {{$user->udata->type}}</p>
+            <p><strong>{{__('text.phone')}}</strong> {{$user->udata->phone}}</p>
+            <p><strong>{{__('text.language')}}</strong> {{$user->udata->language}}</p>
+            <p><strong>{{__('text.self mail')}}</strong> {{$user->udata->selfmail}}</p>
         </div>
     </div>
 @endsection

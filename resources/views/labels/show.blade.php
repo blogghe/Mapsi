@@ -5,8 +5,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>Label details</h1>
-            <p><a href="{{route('labels.edit',['labels' =>$label])}}">Edit</a></p>
+            <h1>{{__('text.label details')}}</h1>
+            <p><a href="{{route('labels.edit',['labels' =>$label])}}">{{__('text.edit')}}</a></p>
             <form action="{{route('labels.destroy', ['label' => $label])}}" method="POST">
                 @method('DELETE')
                 @csrf
@@ -16,8 +16,7 @@
     </div>
     <div class="row">
         <div class="col-12">
-            <p><strong>Id</strong> {{$label->id}}</p>
-            <p><strong>name</strong> {{$label->name}}</p>
+            <p><strong>{{__('text.name')}}</strong> {{$label->name}}</p>
         </div>
     </div>
 @endsection

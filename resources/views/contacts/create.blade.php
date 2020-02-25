@@ -7,14 +7,14 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>Add new contact</h1>
+            <h1>{{__('text.add new contact')}}</h1>
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <form action="{{route('contacts.store')}}" method="POST" enctype="multipart/form-data" class="pb-5">
                 @include('contacts.form')
-                <button type="submit" class="btn btn-primary">Add contact</button>
+                <button type="submit" class="btn btn-primary">{{__('text.add new contact')}}</button>
             </form>
         </div>
     </div>

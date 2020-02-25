@@ -11,32 +11,33 @@
             <!-- Left Side Of Navbar -->
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="{{route('contact.create')}}">{{__('text.contact us')}}</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('about.create')}}">about</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('contact.create')}}">contact us</a>
-                </li>
-                <li  hidden=hidden class="nav-item">
-                    <a class="nav-link" href="{{action([\App\Http\Controllers\ContactFormController::class , 'create'])}}">contact us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('contacts.index')}}">contacts</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('udata.index')}}">User data</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('labels.index')}}">Labels</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('services.index')}}">Service</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{{route('problems.index')}}">Problems</a>
-                </li>
+                @guest
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('about.create')}}">{{__('text.about')}}</a>
+                    </li>
+                @else
+                    <li hidden=hidden class="nav-item">
+                        <a class="nav-link"
+                           href="{{action([\App\Http\Controllers\ContactFormController::class , 'create'])}}">{{__('text.contact us')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('contacts.index')}}">{{__('text.contacts')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('udata.index')}}">{{__('text.user data')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('labels.index')}}">{{__('text.labels')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('services.index')}}">{{__('text.services')}}</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{route('problems.index')}}">{{__('text.problems')}}</a>
+                    </li>
+                    @endguest
             </ul>
 
             <!-- Right Side Of Navbar -->

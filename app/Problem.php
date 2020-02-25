@@ -34,11 +34,11 @@ class Problem extends Model
     public function statusOptions()
     {
         return [
-            0 => 'reported',
-            1 => 'ongoing',
-            2 => 'pending',
-            3 => 'solved',
-            4 => 'unresolved',
+            0 => trans('text.reported'),
+            1 => trans('text.ongoing'),
+            2 => trans('text.pending'),
+            3 => trans('text.solved'),
+            4 => trans('text.unresolved'),
         ];
     }
 }

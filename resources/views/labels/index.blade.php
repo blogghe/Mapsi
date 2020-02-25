@@ -7,8 +7,8 @@
 @section('content')
     <div class="row">
         <div class="col-12">
-            <h1>list label</h1>
-            <p><a href="{{route('labels.create')}}">Add new label</a></p>
+            <h1>{{__('text.labels list')}}</h1>
+            <p><a href="{{route('labels.create')}}">{{__('text.add new label')}}</a></p>
         </div>
     </div>
     @foreach($labels as $label)

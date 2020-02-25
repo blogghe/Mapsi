@@ -5,6 +5,6 @@
 @endsection
 
 @section('content')
-    <h1>Over ons</h1>
-    <p>Mapsi bio hier</p>
+    <h1>{{__('text.about')}}</h1>
+    <p>{{__('text.bio')}}</p>
 @endsection

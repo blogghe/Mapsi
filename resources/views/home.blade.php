@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
+                <!--<div class="card-body">
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
@@ -15,7 +15,7 @@
                     @endif
                     <div class="new-class">You are logged in!</div>
                     <my-button text="mapsi button"></my-button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

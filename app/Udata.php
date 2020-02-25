@@ -8,9 +8,9 @@ class Udata extends Model
 {
     protected $fillable = [ 'type', 'language', 'selfmail', 'phone' ];
 
-    public function getLanguageAttribute($attribute)
+    public function getLanguageAttribute( $attribute )
     {
-        return $this->languageOptions()[$attribute];
+        return $this->languageOptions()[ $attribute ];
     }
 
     public function languageOptions()
@@ -24,9 +24,9 @@ class Udata extends Model
         ];
     }
 
-    public function getTypeAttribute($attribute)
+    public function getTypeAttribute( $attribute )
     {
-        return $this->typeOptions()[$attribute];
+        return $this->typeOptions()[ $attribute ];
     }
 
     public function typeOptions()
@@ -39,21 +39,21 @@ class Udata extends Model
         ];
     }
 
-    public function getSelfmailAttribute($attribute)
+    public function getSelfmailAttribute( $attribute )
     {
-        return $this->selfmailOptions()[$attribute];
+        return $this->selfmailOptions()[ $attribute ];
     }
 
     public function selfmailOptions()
     {
         return [
-            0 => 'yes',
-            1 => 'No',
+            0 => trans( 'text.yes' ),
+            1 => trans( 'text.no' ),
         ];
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo( User::class );
     }
 }

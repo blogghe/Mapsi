@@ -41,7 +41,7 @@ class ProblemPolicy
      */
     public function create(User $user)
     {
-        return in_array($user->email,['admin@admin.com']);
+        //return in_array($user->email,['admin@admin.com']);
     }
 
     /**
@@ -65,7 +65,7 @@ class ProblemPolicy
      */
     public function delete(User $user, Problem $problem)
     {
-        return in_array($user->email,['admin@admin.com']);
+        //return in_array($user->email,['barteldlogghe@gmail.com']);
     }
 
     /**

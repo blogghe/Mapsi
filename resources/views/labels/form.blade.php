@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="name">Name:
+    <label for="name">{{__('text.name')}}:
         <input type="text" name="name" value="{{old('name') ?? $label->name}}" class="form-control">
     </label>
 </div>

@@ -23,7 +23,7 @@ class SetLocale
             $locale = substr($request->server('HTTP_ACCEPT_LANGUAGE'), 0, 2);
             //dd($request->server);
             if ($locale != 'fr' && $locale != 'en' && $locale != 'nl') {
-                $locale = 'en';
+                $locale = 'nl';
             }
         }
         //for now pass down NL

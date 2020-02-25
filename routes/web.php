@@ -14,10 +14,11 @@
 use Illuminate\Support\Facades\Route;
 
 //general pages
-Route::get( '/', function () {
+/*Route::get( '/', function () {
     return view( 'home' );
-} );
+} );*/
 
+Route::get( '/', 'ContactsController@create' );
 Route::get( '/contact', 'ContactFormController@create' )->name( 'contact.create' );
 Route::post( '/contact', 'ContactFormController@store' )->name( 'contact.store' );
 
@@ -100,14 +101,13 @@ Route::get( '/pivotTest', function () {
     $user = \App\User::first();
     //syn is detach  + attach function
     //$user->roles()->sync( [ 1, 2 ] );
-    $user->roles()->sync([
-        1=>[
-            'name' =>'barteld',
-        ]
-    ]);
+    $user->roles()->sync( [
+        1 => [
+            'name' => 'barteld',
+        ],
+    ] );
     //syncwithoutdetaching is only add
     //$user->roles()->dettach($roles);
 
-
-    dd($user->roles()->first()->pivot);
+    dd( $user->roles()->first()->pivot );
 } );
