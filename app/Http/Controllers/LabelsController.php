@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Label;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LabelsController extends Controller
 {
@@ -14,54 +15,53 @@ class LabelsController extends Controller
 
     public function index()
     {
-        $labels = Label::paginate(10);
+        $labels = Label::where( 'user_id', $this->getUserId() )
+            ->paginate( 10 );
 
-        //dd($labels);
         return view( 'labels.index', [ 'labels' => $labels ] );
-
     }
 
     public function create()
     {
         $label = new Label();
-        return view( 'labels.create', compact( 'label' ) );
 
+        return view( 'labels.create', compact( 'label' ) );
     }
 
     public function store()
     {
 
-        /*
-         * Old simple way to store data
+        /* Old simple way to store data
         $label = new Label();
         $name = \request( 'name' );
         $label->name = $name;
         $label->save();*/
 
         //mass assigment
-        $data = $this->validateRequest();
-        Label::create( $data );
+        Label::create( array_merge( $this->validateRequest(), [ 'user_id' => $this->getUserId() ] ) );
         session()->flash( 'message', 'Label created.' );
 
         return redirect( '/labels' );
-
     }
 
     public function show( Label $label )
     {
-        //$label = Label::where('id', $label)->firstOrFail();
+        $label = $this->authenticateLabel( $label );
+
         return view( 'labels.show', compact( 'label' ) );
     }
 
     public function edit( Label $label )
     {
+        $label = $this->authenticateLabel( $label );
+
         return view( 'labels.edit', compact( 'label' ) );
     }
 
     public function update( Label $label )
     {
-        $data = $this->validateRequest();
-        $label->update( $data );
+        $label = $this->authenticateLabel( $label );
+        $label->update( $this->validateRequest() );
         session()->flash( 'message', 'Label updated.' );
 
         return redirect( '/labels/' . $label->id );
@@ -69,10 +69,23 @@ class LabelsController extends Controller
 
     public function destroy( Label $label )
     {
+        $label = $this->authenticateLabel( $label );
         $label->delete();
         session()->flash( 'message', 'Label deleted.' );
 
         return redirect( '/labels' );
+    }
+
+    private function authenticateLabel( Label $label )
+    {
+        return Label::where( 'id', $label->id )
+            ->where( 'user_id', $this->getUserId() )
+            ->firstOrFail();
+    }
+
+    private function getUserId()
+    {
+        return Auth::user()->id;
     }
 
     private function validateRequest()

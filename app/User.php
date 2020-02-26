@@ -42,6 +42,11 @@ class User extends Authenticatable
         return $this->hasMany( Contact::class );
     }
 
+    public function labels()
+    {
+        return $this->hasMany( Label::class );
+    }
+
     public function udata()
     {
         return $this->hasOne(Udata::class);
