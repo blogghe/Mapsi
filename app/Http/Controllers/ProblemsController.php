@@ -7,6 +7,7 @@ use App\Mail\NewProblemReportedMail;
 use App\Problem;
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class ProblemsController extends Controller
@@ -22,10 +23,7 @@ class ProblemsController extends Controller
 
     public function index()
     {
-
         //$problems = Problem::all();
-        $problems = Problem::with( 'service' )->paginate( 10 );
-
         //dd($problems->toArray());
         //eloquent, doesn't get recognized in phpstorm
         /*$reportedProblems = Problem::with( 'service' )->ongoing()->get();
@@ -48,13 +46,17 @@ class ProblemsController extends Controller
             'solvedProblems' => $solvedProblems,
             'UnsolvedProblems' => $UnsolvedProblems,
         ] );*/
+        $problems = Problem::with( 'service' )
+            ->where( 'user_id', $this->getUserId() )
+            ->paginate( 10 );
 
         return view( 'problems.index', compact( 'problems', 'reportedProblems', 'ongoingProblems', 'pendingProblems', 'solvedProblems', 'UnsolvedProblems', 'services' ) );
     }
 
     public function create()
     {
-        $services = Service::all();
+        $services = Service::all()
+            ->where( 'user_id', $this->getUserId() );
         $problem = new Problem();
 
         return view( 'problems.create', compact( 'services', 'problem' ) );
@@ -63,10 +65,10 @@ class ProblemsController extends Controller
     public function store()
     {
         //authorize here makes backendcalls safe on command line
-        $this->authorize( 'create', Problem::class );
-        $data = $this->validateRequest();
-        $problem = Problem::create( $data );
+        //$this->authorize( 'create', Problem::class );
+        //dd(array_merge( $this->validateRequest(), [ 'user_id' => $this->getUserId() ]));
 
+        $problem = Problem::create( array_merge( $this->validateRequest(), [ 'user_id' => $this->getUserId() ] ) );
         event( new NewProblemHasBeenReportedEvent( $problem ) );
         session()->flash( 'message', 'Problem created.' );
 
@@ -75,35 +77,49 @@ class ProblemsController extends Controller
 
     public function show( Problem $problem )
     {
-        //$problem = Problem::find($problem);
-        //$problem = Problem::where('id', $problem)->firstOrFail();
+        $problem = $this->authenticateProblem( $problem );
+
         return view( 'problems.show', compact( 'problem' ) );
     }
 
     public function edit( Problem $problem )
     {
-        $services = Service::all();
+        $services = Service::all()
+            ->where( 'user_id', $this->getUserId() );
+        $problem = $this->authenticateProblem( $problem );
 
         return view( 'problems.edit', compact( 'problem', 'services' ) );
     }
 
     public function update( Problem $problem )
     {
-        $data = $this->validateRequest();
+        $problem = $this->authenticateProblem( $problem );
+        $problem->update( $this->validateRequest() );
         session()->flash( 'message', 'Problem updated.' );
-
-        $problem->update( $data );
 
         return redirect( '/problems/' . $problem->id );
     }
 
     public function destroy( Problem $problem )
     {
+        $problem = $this->authenticateProblem( $problem );
         $this->authorize( 'delete', $problem );
         $problem->delete();
         session()->flash( 'message', 'Problem deleted.' );
 
         return redirect( '/problems' );
+    }
+
+    private function authenticateProblem( Problem $problem )
+    {
+        return Problem::where( 'id', $problem->id )
+            ->where( 'user_id', $this->getUserId() )
+            ->firstOrFail();
+    }
+
+    private function getUserId()
+    {
+        return Auth::user()->id;
     }
 
     private function validateRequest()

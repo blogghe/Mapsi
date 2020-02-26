@@ -57,9 +57,24 @@ class User extends Authenticatable
         return $this->hasMany( Service::class );
     }
 
+    public function problems()
+    {
+        return $this->hasMany( Problem::class );
+    }
+
     public function roles()
     {
         return $this->belongsToMany( Role::class )->withPivot( 'name' )->withTimestamps();
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo( User::class, 'parent_id' );
+    }
+
+    public function children()
+    {
+        return $this->hasMany( User::class, 'parent_id' );
     }
 
 }
