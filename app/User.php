@@ -49,11 +49,17 @@ class User extends Authenticatable
 
     public function udata()
     {
-        return $this->hasOne(Udata::class);
+        return $this->hasOne( Udata::class );
+    }
+
+    public function services()
+    {
+        return $this->hasMany( Service::class );
     }
 
     public function roles()
     {
-        return $this->belongsToMany(Role::class)->withPivot('name')->withTimestamps();
+        return $this->belongsToMany( Role::class )->withPivot( 'name' )->withTimestamps();
     }
+
 }
