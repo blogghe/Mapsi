@@ -29,9 +29,14 @@ class Contact extends Model
     public function genderOptions()
     {
         return [
-            0 => trans('text.male'),
-            1 => trans('text.female'),
-            2 => trans('text.other'),
+            0 => trans( 'text.male' ),
+            1 => trans( 'text.female' ),
+            2 => trans( 'text.other' ),
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo( User::class );
     }
 }
