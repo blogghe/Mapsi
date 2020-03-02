@@ -76,6 +76,8 @@ Route::patch( 'udata/{udata}', 'UdataController@update2' )->name( 'udata.update'
 Auth::routes();
 
 Route::get( '/home', 'HomeController@index' )->name( 'home' );
+Route::get('/performanceTests', 'ProblemsController@performanceTests');
+
 
 Route::get( '/userdataTest', function () {
 

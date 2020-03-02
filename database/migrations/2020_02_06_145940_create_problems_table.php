@@ -17,6 +17,7 @@ class CreateProblemsTable extends Migration
             $table->bigIncrements( 'id' );
             $table->unsignedBigInteger( 'service_id' )->index();
             $table->unsignedBigInteger( 'user_id' )->index();
+            $table->unsignedBigInteger('contact_id')->index();
             $table->string( 'title' );
             $table->string( 'description' )->nullable();
             $table->integer( 'status' )->default(0);

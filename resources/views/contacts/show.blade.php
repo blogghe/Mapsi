@@ -20,7 +20,8 @@
         <div class="col-12">
             <p><strong>{{__('text.name')}}</strong> {{$contact->name}}</p>
             <p><strong>{{__('text.email')}}</strong> {{$contact->email}}</p>
-            <p><strong>{{__('text.street')}} + {{__('text.nr')}} + {{__('text.bus')}}</strong> {{$contact->street}} {{$contact->sNumber}} {{$contact->bus}}</p>
+            <p><strong>{{__('text.street')}} + {{__('text.nr')}}
+                    + {{__('text.bus')}}</strong> {{$contact->street}} {{$contact->sNumber}} {{$contact->bus}}</p>
             <p><strong>{{__('text.city')}} + {{__('text.zip')}}</strong> {{$contact->city}} {{$contact->zip}}</p>
             <p><strong>{{__('text.phone 1')}}</strong> {{$contact->phone}}</p>
             <p><strong>{{__('text.gender')}}</strong> {{$contact->gender}}</p>
@@ -31,4 +32,20 @@
             <div class="col-12"><img src="{{asset('storage/' . $contact->image)}}" alt="" class="img-thumbnail"></div>
         </div>
     @endif
+    <div class="row">
+        <div class="col-12">
+            <h3>{{__('text.linked problems')}}</h3>
+        </div>
+    </div>
+    @foreach($contact->problems as $problem)
+        <div class="row">
+            <div class="col-3">
+                <a href="{{route('problems.show',['problem'=>$problem])}}">{{$problem->title}}</a>
+            </div>
+            <div class="col-3 d-none d-md-block">
+                <a href="{{route('services.show', ['service'=>$problem->service])}}">{{$problem->service->name}}</a>
+            </div>
+            <div class="col-3 d-none d-sm-block">{{$problem->status}}</div>
+        </div>
+    @endforeach
 @endsection

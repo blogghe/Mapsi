@@ -20,8 +20,8 @@
             <div class="col-5">
                 <a href="{{route('problems.update', ['problem' =>$problem])}}">{{$problem->title}}</a>
             </div>
-            <div class="col-5  d-none d-sm-block">{{$problem->service->name}}</div>
-            <div class="col-2  d-none d-md-block">{{$problem->status}}</div>
+            <div class="col-5  d-none d-md-block">{{$problem->service->name}}</div>
+            <div class="col-2  d-none d-sm-block">{{$problem->status}}</div>
         </div>
     @endforeach
 

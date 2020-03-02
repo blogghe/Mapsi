@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Problem extends Model
 {
-    protected $fillable = [ 'title', 'description', 'status', 'service_id', 'user_id' ];
+    //what can be passed down by a form
+    protected $fillable = [ 'title', 'description', 'status', 'service_id', 'user_id', 'contact_id' ];
 
     //todo service_id moet anders gedaan worden
     protected $attributes = [
-        'status'     => '0',
-        'service_id' => '1',
+        'status' => '0',
     ];
 
     public function getStatusAttribute( $attribute )
@@ -32,6 +32,16 @@ class Problem extends Model
     public function User()
     {
         return $this->belongsTo( User::class );
+    }
+
+    public function labels()
+    {
+        return $this->belongsToMany( Label::class );
+    }
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
     }
 
     public function statusOptions()

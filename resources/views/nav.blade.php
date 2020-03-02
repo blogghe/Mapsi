@@ -23,10 +23,10 @@
                            href="{{action([\App\Http\Controllers\ContactFormController::class , 'create'])}}">{{__('text.contact us')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('contacts.index')}}">{{__('text.contacts')}}</a>
+                        <a class="nav-link" href="{{route('udata.index')}}">{{__('text.user data')}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{route('udata.index')}}">{{__('text.user data')}}</a>
+                        <a class="nav-link" href="{{route('contacts.index')}}">{{__('text.contacts')}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('labels.index')}}">{{__('text.labels')}}</a>

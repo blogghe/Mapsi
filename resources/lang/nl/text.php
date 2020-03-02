@@ -75,4 +75,8 @@ return [
     'unresolved'        => 'Onopgelost',
     'edit problem'      => 'Probleem aanpassen',
     'select a service'  => 'Kies een dienst',
+    'contact'           => 'Contact',
+    'select a contact'  => 'Kies een contact',
+    'select a label'    => 'Kies een Label',
+    'label'             => 'Label',
 ];
