@@ -49,9 +49,11 @@ class ProblemsController extends Controller
             'solvedProblems' => $solvedProblems,
             'UnsolvedProblems' => $UnsolvedProblems,
         ] );*/
+
         $problems = Problem::with( 'service' )
             ->where( 'user_id', $this->getUserId() )
             ->paginate( 10 );
+        //dd($problems);
 
         return view( 'problems.index', compact( 'problems', 'reportedProblems', 'ongoingProblems', 'pendingProblems', 'solvedProblems', 'UnsolvedProblems', 'services' ) );
     }
@@ -73,14 +75,22 @@ class ProblemsController extends Controller
 
     public function store()
     {
+
         //TODO authorize here makes backendcalls safe on command line
         //$this->authorize( 'create', Problem::class );
         $request = $this->validateRequest();
+        $requestContact = $this->validateContact();
+        //dd( array_merge( $requestContact, [ "street" => NULL, "sNumber" => NULL, "bus" => NULL, "city" => NULL, "gender" => "0", "zip" => NULL, "phone" => NULL, "user_id" => $this->getUserId(), ] ) );
         $label_id = $request[ 'label_id' ];
         //$label_id=1;
-        $labels= Label::where('user_id', $this->getUserId())
-        ->where('id', $label_id);
+        $labels = Label::where( 'user_id', $this->getUserId() )
+            ->where( 'id', $label_id );
+        $contact = Contact::create( array_merge( $requestContact, [ "street" => NULL, "sNumber" => NULL, "bus" => NULL, "city" => NULL, "gender" => "0", "zip" => NULL, "phone" => NULL, "user_id" => $this->getUserId(), ] ) );
+        if ( $contact->id )
+            $request[ 'contact_id' ] = $contact->id;
+
         $problem = Problem::create( array_merge( $request, [ 'user_id' => $this->getUserId() ] ) );
+        //dd($problem);
         if ( $labels->first() <> NULL ) {
             //dd('hier');
             $problem->labels()
@@ -137,7 +147,6 @@ class ProblemsController extends Controller
     public function destroy( Problem $problem )
     {
         $problem = $this->authenticateProblem( $problem );
-        //dd($problem->labels());
         //todo activiate authorize
         //$this->authorize( 'delete', $problem );
         $problem->delete();
@@ -147,6 +156,27 @@ class ProblemsController extends Controller
         session()->flash( 'message', 'Problem deleted.' );
 
         return redirect( '/problems' );
+    }
+
+    public function filter( Request $request )
+    {
+        $sortBy = 'id';
+        $orderBy = 'desc';
+        $perPage = '15';
+        $q = NULL;
+        $statusFilter = "";
+        if ( $request->has( 'orderBy' ) ) $orderBy = $request->query( 'orderBy' );
+        if ( $request->has( 'sortBy' ) ) $sortBy = $request->query( 'sortBy' );
+        if ( $request->has( 'perPage' ) ) $perPage = $request->query( 'perPage' );
+        if ( $request->has( 'q' ) ) $q = $request->query( 'q' );
+
+
+        //todo check all filters
+        //todo filter on status
+        //todo filter on service
+        //todo filter on labels
+        //todo apply combination of filters
+
     }
 
     private function authenticateProblem( Problem $problem )
@@ -176,6 +206,16 @@ class ProblemsController extends Controller
         ] );
     }
 
+    private function validateContact()
+    {
+        //todo array_merge(all missing fields)
+        return \request()->validate( [
+            'name'      => 'nullable',
+            'email'     => 'nullable|email',
+            'birthdate' => 'nullable|date',
+        ] );
+    }
+
     public function performanceTests2()
     {
         //todo new function whit return function empty view but that does eqloquent
@@ -185,8 +225,6 @@ class ProblemsController extends Controller
         $problem = Problem::with( 'service' )
             ->with( 'contact' )
             ->where( 'user_id', $this->getUserId() )->firstOrFail();
-        //dd($user);
-        //dd( $problem );
     }
 
     public function performanceTests()
@@ -218,7 +256,6 @@ class ProblemsController extends Controller
             'name'    => 'dummyLabel',
             'user_id' => $this->getUserId(),
         ];
-        //dd($contactRequest);
         $contact = Contact::create( $contactRequest );
         $service = Service::create( $serviceRequest );
         $label = Label::create( $labelRequest );

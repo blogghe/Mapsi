@@ -13,8 +13,11 @@
             <p><a href="{{route('problems.create')}}">{{__('text.add new problem')}}</a></p>
         </div>
     </div>
+    <div class="row">
+        <div class="col-12">
 
-
+        </div>
+    </div>
     @foreach($problems as $problem)
         <div class="row">
             <div class="col-5">

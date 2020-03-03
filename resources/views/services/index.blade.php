@@ -13,9 +13,11 @@
     </div>
     @foreach($services as $service)
         <div class="row">
-            <div class="col-12">
-                <a href="{{route('services.update',['service' => $service])}}">{{$service->name}}</a><span class="text-muted d-none d-md-block"> ({{$service->email}})</span>
+            <div class="col-6">
+                <a href="{{route('services.update',['service' => $service])}}">{{$service->name}}</a>
+            <!--<span class="text-muted d-none d-md-block"> ({{$service->email}})</span> -->
             </div>
+            <div class="col-6 d-none d-sm-block">{{$service->email}}</div>
         </div>
     @endforeach
     <div class="row">
@@ -24,3 +26,4 @@
         </div>
     </div>
 @endsection
+

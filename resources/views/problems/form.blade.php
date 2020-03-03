@@ -24,21 +24,6 @@
     <div>{{$errors->first('description')}}</div>
 </div>
 <div class="form-group">
-    <label for="contact_id">{{__('text.contact')}}:
-        <select class="form-control m-bot15" name="contact_id" id="contact_id">
-            <option value="" disabled>{{__('text.select a contact')}}</option>
-            @foreach($contacts as $contact)
-                <option value="{{$contact->id}}" @isset($problem['contact_id'])
-                    {{$contact->id == $problem->contact->id ? 'selected': ''}}
-                    @endisset>
-                    {{$contact->name}}
-                </option>
-            @endforeach
-        </select>
-    </label>
-    <div>{{$errors->first('contact_id')}}</div>
-</div>
-<div class="form-group">
     <label for="label_id">{{__('text.label')}}:
         <select class="form-control m-bot15" name="label_id" id="label_id">
             <option value="" disabled>{{__('text.select a label')}}</option>
@@ -68,5 +53,20 @@
         </select>
     </label>
     <div>{{$errors->first('service_id')}}</div>
+</div>
+<div class="form-group">
+    <label for="contact_id">{{__('text.contact')}}:
+        <select class="form-control m-bot15" name="contact_id" id="contact_id">
+            <option value="" disabled>{{__('text.select a contact')}}</option>
+            @foreach($contacts as $contact)
+                <option value="{{$contact->id}}" @isset($problem['contact_id'])
+                    {{$contact->id == $problem->contact->id ? 'selected': ''}}
+                    @endisset>
+                    {{$contact->name}}
+                </option>
+            @endforeach
+        </select>
+    </label>
+    <div>{{$errors->first('contact_id')}}</div>
 </div>
 @csrf
